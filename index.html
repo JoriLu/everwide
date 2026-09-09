@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>正老林羊肉爐 - 現場座位配置圖</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", "PingFang TC", sans-serif;
+      color: #0f172a;
+      padding: 24px 16px;
+      line-height: 1.4;
+    }
+
+    /* 頂部操作工具列 */
+    .toolbar {
+      max-width: 1200px;
+      margin: 0 auto 20px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #ffffff;
+      padding: 14px 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .toolbar-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #991b1b;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+      color: #334155;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn:hover {
+      background: #e2e8f0;
+    }
+
+    .btn.active {
+      background: #991b1b;
+      color: #ffffff;
+      border-color: #991b1b;
+    }
+
+    .btn-print {
+      background: #1e293b;
+      color: #ffffff;
+      border: none;
+    }
+
+    .btn-print:hover {
+      background: #334155;
+    }
+
+    /* 獨立頁面容器 */
+    .sheet-card {
+      max-width: 1200px;
+      margin: 0 auto 30px auto;
+      background: #ffffff;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 24px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .sheet-header {
+      border-bottom: 2px solid #e2e8f0;
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .sheet-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: #991b1b;
+      letter-spacing: 0.5px;
+    }
+
+    /* 平面舞台容器 */
+    .floor-stage {
+      background: #f8fafc;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 16px;
+      position: relative;
+    }
+
+    /* 左下角入口指示 (紅色箭頭與豎線) */
+    .entrance-box {
+      position: absolute;
+      left: 16px;
+      bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: #fee2e2;
+      border: 2px solid #ef4444;
+      padding: 6px 14px;
+      border-radius: 6px;
+      color: #991b1b;
+      font-size: 13px;
+      font-weight: 800;
+      z-index: 5;
+    }
+
+    .entrance-arrow {
+      font-size: 18px;
+      font-weight: 900;
+      color: #dc2626;
+    }
+
+    /* 四欄排版：最外欄(4人桌-09) | 門口內欄(4人桌-08) | 中排縱列 | 右排縱列 */
+    .floor-grid {
+      display: grid;
+      grid-template-columns: 200px 200px 1fr 1fr;
+      gap: 16px;
+      padding-bottom: 60px; /* 預留底部大門入口指示空間 */
+    }
+
+    .col-title {
+      font-size: 12px;
+      font-weight: bold;
+      color: #475569;
+      text-align: center;
+      background: #e2e8f0;
+      padding: 4px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    /* 門口兩側獨立欄位 (底部對齊) */
+    .col-door-outer,
+    .col-door-inner {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    /* 中排與右排縱列 */
+    .col-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* 桌子卡片本體 */
+    .table-card {
+      background: #ffffff;
+      border: 1.5px solid #475569;
+      border-radius: 6px;
+      padding: 8px 10px;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .table-card.door-card-h {
+      height: 120px;
+      justify-content: center;
+    }
+
+    .table-card.empty-table {
+      border: 1.5px dashed #cbd5e1;
+      background: #f1f5f9;
+      opacity: 0.8;
+    }
+
+    .table-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .table-id {
+      font-size: 13px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .soup-tag {
+      font-size: 11px;
+      background: #fff7ed;
+      color: #c2410c;
+      border: 1px solid #fdba74;
+      padding: 1px 6px;
+      border-radius: 10px;
+      font-weight: 700;
+    }
+
+    /* 2人桌座位並排 */
+    .seats-2p {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px;
+    }
+
+    /* 4人桌座位 2x2 對坐 */
+    .seats-4p {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 6px;
+    }
+
+    .seat-cell {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 6px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 24px;
+    }
+
+    .seat-cell .name {
+      font-weight: 700;
+      color: #1e293b;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .seat-cell.is-rel .name {
+      color: #0369a1;
+    }
+
+    .seat-cell.is-blank {
+      border: 1px dashed #cbd5e1;
+      color: #94a3b8;
+      justify-content: center;
+      font-size: 11px;
+    }
+
+    .fee-pill {
+      font-size: 10px;
+      background: #fee2e2;
+      color: #b91c1c;
+      font-weight: 800;
+      padding: 0 4px;
+      border-radius: 3px;
+      margin-left: 2px;
+      white-space: nowrap;
+    }
+
+    .free-pill {
+      font-size: 10px;
+      background: #dcfce7;
+      color: #15803d;
+      font-weight: 800;
+      padding: 0 4px;
+      border-radius: 3px;
+      margin-left: 2px;
+      white-space: nowrap;
+    }
+
+    /* 圖例 */
+    .legend {
+      display: flex;
+      justify-content: flex-end;
+      gap: 16px;
+      font-size: 12px;
+      color: #475569;
+      margin-top: 12px;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+    }
+
+    /* 列印樣式 (支援 A4 橫向) */
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 8mm;
+      }
+      body {
+        background: #ffffff;
+        padding: 0;
+      }
+      .toolbar {
+        display: none !important;
+      }
+      .sheet-card {
+        box-shadow: none;
+        border: none;
+        padding: 0;
+        margin: 0 0 20px 0;
+        page-break-after: always;
+      }
+      .sheet-card.hide-print {
+        display: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 頂部操作工具列 -->
+  <div class="toolbar">
+    <div class="toolbar-title">正老林羊肉爐 - 現場座位配置</div>
+    <div class="btn-group">
+      <button class="btn active" onclick="switchSession('1120')">11/20 (三) 第一梯次</button>
+      <button class="btn" onclick="switchSession('1127')">11/27 (三) 第二梯次</button>
+    </div>
+  </div>
+
+  <!-- ==================== 梯次 1：11/20 (三) ==================== -->
+  <div class="sheet-card" id="session-1120">
+    <div class="sheet-header">
+      <div class="sheet-title">第一梯次：11/20 (三) 現場座位圖</div>
+    </div>
+
+    <div class="floor-stage">
+      <!-- 左下方大門標示 (紅色箭頭與豎線) -->
+      <div class="entrance-box">
+        <span class="entrance-arrow">←</span>
+        <span>【大門入口】</span>
+      </div>
+
+      <div class="floor-grid">
+        <!-- 欄 1：最外側門口欄 (4人桌-09 沒坐人) -->
+        <div class="col-door-outer">
+          <div class="col-title">大門最外欄</div>
+          <div class="table-card door-card-h empty-table">
+            <div class="table-meta">
+              <span class="table-id">4人桌-09</span>
+              <span class="soup-tag">彈性備用</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 2：門口內側欄 (4人桌-08) -->
+        <div class="col-door-inner">
+          <div class="col-title">門口內側欄</div>
+          <div class="table-card door-card-h">
+            <div class="table-meta">
+              <span class="table-id">4人桌-08</span>
+              <span class="soup-tag">麻辣 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">林信宏</span></div>
+              <div class="seat-cell"><span class="name">鄧氏金雪</span></div>
+              <div class="seat-cell is-blank">(空位)</div>
+              <div class="seat-cell is-blank">(空位)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 3：中排縱列 (由左至右、由上至下依序對齊) -->
+        <div class="col-vertical">
+          <div class="col-title">中排縱列</div>
+
+          <!-- Row 1: 2人桌-01 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-01</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">李彥潁</span></div>
+              <div class="seat-cell"><span class="name">張嘉芳</span></div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2人桌-03 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-03</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">邱俊霖</span></div>
+              <div class="seat-cell"><span class="name">廖家偉</span></div>
+            </div>
+          </div>
+
+          <!-- Row 3: 4人桌-01 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-01</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">鄭仁傑</span></div>
+              <div class="seat-cell"><span class="name">李容菀</span></div>
+              <div class="seat-cell is-blank">(空位)</div>
+              <div class="seat-cell is-blank">(空位)</div>
+            </div>
+          </div>
+
+          <!-- Row 4: 4人桌-03 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-03</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">呂信宏</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$299</span></div>
+            </div>
+          </div>
+
+          <!-- Row 5: 4人桌-05 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-05</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">沈玟姍</span></div>
+              <div class="seat-cell is-rel"><span class="name">沈玟姍親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell"><span class="name">葉玲</span></div>
+              <div class="seat-cell"><span class="name">李春香</span></div>
+            </div>
+          </div>
+
+          <!-- Row 6: 2人桌-05 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-05</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">張志強</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 7: 2人桌-06 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-06</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">徐淑貞</span></div>
+              <div class="seat-cell"><span class="name">林雅婷</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 4：右排縱列 (由左至右、由上至下依序對齊) -->
+        <div class="col-vertical">
+          <div class="col-title">右排縱列</div>
+
+          <!-- Row 1: 2人桌-02 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-02</span>
+              <span class="soup-tag">清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">余靜如</span></div>
+              <div class="seat-cell is-rel"><span class="name">余靜如親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2人桌-04 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-04</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">盧芷筠</span></div>
+              <div class="seat-cell"><span class="name">陳嘉敏</span></div>
+            </div>
+          </div>
+
+          <!-- Row 3: 4人桌-02 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-02</span>
+              <span class="soup-tag">清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">陳蔡月英</span></div>
+              <div class="seat-cell is-rel"><span class="name">陳蔡月英親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-blank">(空位)</div>
+              <div class="seat-cell is-blank">(空位)</div>
+            </div>
+          </div>
+
+          <!-- Row 4: 4人桌-04 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-04</span>
+              <span class="soup-tag">紅燒</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">陳惠君</span></div>
+              <div class="seat-cell"><span class="name">張晉維</span></div>
+              <div class="seat-cell"><span class="name">何杰龍</span></div>
+              <div class="seat-cell"><span class="name">邱栯菘</span></div>
+            </div>
+          </div>
+
+          <!-- Row 5: 4人桌-06 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-06</span>
+              <span class="soup-tag">紅燒</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">梁雅娟</span></div>
+              <div class="seat-cell"><span class="name">李建忠</span></div>
+              <div class="seat-cell"><span class="name">劉珊廷</span></div>
+              <div class="seat-cell"><span class="name">徐逸軒</span></div>
+            </div>
+          </div>
+
+          <!-- Row 6: 4人桌-07 (安排入座黃凱鳳等人) -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-07</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">黃凱鳳</span></div>
+              <div class="seat-cell"><span class="name">朱昱禎</span></div>
+              <div class="seat-cell is-rel"><span class="name">黃凱鳳親屬</span><span class="fee-pill">$129</span></div>
+              <div class="seat-cell is-blank">(空位)</div>
+            </div>
+          </div>
+
+          <!-- Row 7: 2人桌-07 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-07</span>
+              <span class="soup-tag">紅燒 / 麻辣</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">陳昱仁</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 圖例標示 -->
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:#1e293b;"></span>同仁</div>
+        <div class="legend-item"><span class="dot" style="background:#0369a1;"></span>親屬</div>
+        <div class="legend-item"><span class="dot" style="background:#fee2e2; border:1px solid #b91c1c;"></span>自費收費</div>
+        <div class="legend-item"><span class="dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 梯次 2：11/27 (三) ==================== -->
+  <div class="sheet-card" id="session-1127" style="display: none;">
+    <div class="sheet-header">
+      <div class="sheet-title">第二梯次：11/27 (三) 現場座位圖</div>
+    </div>
+
+    <div class="floor-stage">
+      <!-- 左下方大門標示 (紅色箭頭與豎線) -->
+      <div class="entrance-box">
+        <span class="entrance-arrow">←</span>
+        <span>【大門入口】</span>
+      </div>
+
+      <div class="floor-grid">
+        <!-- 欄 1：最外側門口欄 (4人桌-09 沒坐人) -->
+        <div class="col-door-outer">
+          <div class="col-title">大門最外欄</div>
+          <div class="table-card door-card-h empty-table">
+            <div class="table-meta">
+              <span class="table-id">4人桌-09</span>
+              <span class="soup-tag">彈性備用</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 2：門口內側欄 (4人桌-08) -->
+        <div class="col-door-inner">
+          <div class="col-title">門口內側欄</div>
+          <div class="table-card door-card-h empty-table">
+            <div class="table-meta">
+              <span class="table-id">4人桌-08</span>
+              <span class="soup-tag">彈性備用</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 3：中排縱列 (由左至右、由上至下依序對齊) -->
+        <div class="col-vertical">
+          <div class="col-title">中排縱列</div>
+
+          <!-- Row 1: 2人桌-01 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-01</span>
+              <span class="soup-tag">紅燒 / 麻辣</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">陳昱潔</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2人桌-03 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-03</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">黃琴亮</span></div>
+              <div class="seat-cell"><span class="name">許國安</span></div>
+            </div>
+          </div>
+
+          <!-- Row 3: 4人桌-01 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-01</span>
+              <span class="soup-tag">清燉 / 麻辣</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">劉運弦</span></div>
+              <div class="seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell"><span class="name">賴明秀</span></div>
+              <div class="seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 4: 4人桌-03 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-03</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">賴慧芳</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 5: 4人桌-05 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-05</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">黃炳菖</span></div>
+              <div class="seat-cell"><span class="name">陳任瑋</span></div>
+              <div class="seat-cell"><span class="name">林琮輝</span></div>
+              <div class="seat-cell"><span class="name">林家儀</span></div>
+            </div>
+          </div>
+
+          <!-- Row 6: 2人桌-05 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-05</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">陳坤穎</span></div>
+              <div class="seat-cell is-rel"><span class="name">親屬</span><span class="fee-pill">$599</span></div>
+            </div>
+          </div>
+
+          <!-- Row 7: 2人桌-06 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-06</span>
+              <span class="soup-tag">清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">林惠琴</span></div>
+              <div class="seat-cell"><span class="name">陳玉瓶</span></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 欄 4：右排縱列 (由左至右、由上至下依序對齊) -->
+        <div class="col-vertical">
+          <div class="col-title">右排縱列</div>
+
+          <!-- Row 1: 2人桌-02 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-02</span>
+              <span class="soup-tag">清燉 / 麻辣</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">黃俊維</span></div>
+              <div class="seat-cell"><span class="name">張瑞家</span></div>
+            </div>
+          </div>
+
+          <!-- Row 2: 2人桌-04 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">2人桌-04</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell"><span class="name">葉政洋</span></div>
+              <div class="seat-cell"><span class="name">杜冠儒</span></div>
+            </div>
+          </div>
+
+          <!-- Row 3: 4人桌-02 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-02</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">張志璁</span></div>
+              <div class="seat-cell is-rel"><span class="name">張志璁親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">張志璁親屬</span><span class="free-pill">不收費</span></div>
+              <div class="seat-cell"><span class="name">陳迺壹</span></div>
+            </div>
+          </div>
+
+          <!-- Row 4: 4人桌-04 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-04</span>
+              <span class="soup-tag">紅燒 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">陳詩敏</span></div>
+              <div class="seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="fee-pill">$129</span></div>
+              <div class="seat-cell"><span class="name">陳瑾</span></div>
+            </div>
+          </div>
+
+          <!-- Row 5: 4人桌-06 -->
+          <div class="table-card">
+            <div class="table-meta">
+              <span class="table-id">4人桌-06</span>
+              <span class="soup-tag">麻辣 / 清燉</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell"><span class="name">游啟瑞</span></div>
+              <div class="seat-cell"><span class="name">吳淑霞</span></div>
+              <div class="seat-cell is-rel"><span class="name">吳淑霞親屬</span><span class="fee-pill">$599</span></div>
+              <div class="seat-cell"><span class="name">黃松献</span></div>
+            </div>
+          </div>
+
+          <!-- Row 6: 4人桌-07 (未排定備用) -->
+          <div class="table-card empty-table">
+            <div class="table-meta">
+              <span class="table-id">4人桌-07</span>
+              <span class="soup-tag">彈性備用</span>
+            </div>
+            <div class="seats-4p">
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+            </div>
+          </div>
+
+          <!-- Row 7: 2人桌-07 (未排定) -->
+          <div class="table-card empty-table">
+            <div class="table-meta">
+              <span class="table-id">2人桌-07</span>
+              <span class="soup-tag">清燉 / 麻辣</span>
+            </div>
+            <div class="seats-2p">
+              <div class="seat-cell is-blank">(未排定)</div>
+              <div class="seat-cell is-blank">(未排定)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 圖例標示 -->
+      <div class="legend">
+        <div class="legend-item"><span class="dot" style="background:#1e293b;"></span>同仁</div>
+        <div class="legend-item"><span class="dot" style="background:#0369a1;"></span>親屬</div>
+        <div class="legend-item"><span class="dot" style="background:#fee2e2; border:1px solid #b91c1c;"></span>自費收費</div>
+        <div class="legend-item"><span class="dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function switchSession(type) {
+      const s1 = document.getElementById('session-1120');
+      const s2 = document.getElementById('session-1127');
+      const btns = document.querySelectorAll('.toolbar .btn');
+
+      btns.forEach(b => b.classList.remove('active'));
+
+      if (type === '1120') {
+        s1.style.display = 'block';
+        s2.style.display = 'none';
+        btns[0].classList.add('active');
+      } else if (type === '1127') {
+        s1.style.display = 'none';
+        s2.style.display = 'block';
+        btns[1].classList.add('active');
+      } else {
+        s1.style.display = 'block';
+        s2.style.display = 'block';
+        btns[2].classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
