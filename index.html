@@ -386,9 +386,14 @@
     }
 
     .zl-sheet-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 12px;
       margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .zl-sheet-title {
@@ -396,6 +401,15 @@
       font-weight: 800;
       color: #991b1b;
       letter-spacing: 0.5px;
+    }
+
+    .zl-sheet-legend-top {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #334155;
     }
 
     .zl-floor-stage {
@@ -573,7 +587,7 @@
       align-items: center;
       border-bottom: 2px solid #e2e8f0;
       padding-bottom: 14px;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
       flex-wrap: wrap;
       gap: 12px;
     }
@@ -591,6 +605,33 @@
       font-size: 12.5px;
       font-weight: 600;
       color: #475569;
+    }
+
+    /* 霸味專用提示框 */
+    .bw-notice-box {
+      background: #eff6ff;
+      border: 1.5px solid #3b82f6;
+      border-radius: 8px;
+      padding: 12px 18px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #1e3a8a;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      box-shadow: 0 2px 6px rgba(59, 130, 246, 0.08);
+    }
+
+    .bw-notice-box .notice-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .bw-notice-box strong {
+      color: #1d4ed8;
+      font-weight: 800;
     }
 
     .bw-table-wrapper {
@@ -1043,6 +1084,11 @@
     <div class="zl-sheet-card">
       <div class="zl-sheet-header">
         <div class="zl-sheet-title">正老林羊肉爐：11/20 (五) 現場座位圖</div>
+        <div class="zl-sheet-legend-top">
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
+        </div>
       </div>
 
       <div class="zl-floor-stage">
@@ -1208,7 +1254,6 @@
         <div class="zl-legend">
           <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
           <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#fee2e2; border:1px solid #b91c1c;"></span>自費收費</div>
           <div class="zl-legend-item"><span class="zl-dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
         </div>
       </div>
@@ -1220,6 +1265,12 @@
     <div class="zl-sheet-card">
       <div class="zl-sheet-header">
         <div class="zl-sheet-title">正老林羊肉爐：11/27 (五) 現場座位圖</div>
+        <div class="zl-sheet-legend-top">
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#fee2e2; border:1px solid #b91c1c;"></span>自費收費</div>
+          <div class="zl-legend-item"><span class="zl-dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
+        </div>
       </div>
 
       <div class="zl-floor-stage">
@@ -1407,6 +1458,12 @@
           <div><span class="zl-dot" style="background:#1e293b; display:inline-block; margin-right:4px;"></span>同仁</div>
           <div><span class="zl-dot" style="background:#0369a1; display:inline-block; margin-right:4px;"></span>親屬</div>
         </div>
+      </div>
+
+      <!-- 提示框 -->
+      <div class="bw-notice-box">
+        <span class="notice-icon">📢</span>
+        <span><strong>霸味薑母鴨</strong>，請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
 
       <div class="bw-table-wrapper">
@@ -1828,6 +1885,12 @@
           <div><span class="zl-dot" style="background:#1e293b; display:inline-block; margin-right:4px;"></span>同仁</div>
           <div><span class="zl-dot" style="background:#0369a1; display:inline-block; margin-right:4px;"></span>親屬</div>
         </div>
+      </div>
+
+      <!-- 提示框 -->
+      <div class="bw-notice-box">
+        <span class="notice-icon">📢</span>
+        <span><strong>霸味薑母鴨</strong>，請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
 
       <div class="bw-table-wrapper">
