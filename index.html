@@ -150,7 +150,15 @@
     .pill-danger { background: var(--pill-danger-bg); color: var(--pill-danger-txt); border-color: var(--pill-danger-bd); }
     .pill-neutral { background: var(--pill-neutral-bg); color: var(--pill-neutral-txt); border-color: var(--pill-neutral-bd); }
 
-    .is-rel { color: var(--color-relative) !important; font-weight: 700; }
+    /* 親屬姓名顏色統一 (川玥、正老林、霸味完整覆蓋) */
+    .is-rel,
+    .is-rel .name,
+    .is-rel .cy-m-name,
+    .cy-member-item.is-rel .cy-m-name,
+    .cy-m-name.is-rel {
+      color: var(--color-relative) !important;
+      font-weight: 700;
+    }
     .status-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 
     /* 共通卡片結構 */
@@ -217,7 +225,6 @@
       letter-spacing: 0.5px;
     }
 
-    /* 川玥圖例大小：精準補償 zoom 0.58，視覺效果與正老林一致 */
     .cy-legend-scaled {
       display: flex;
       align-items: center;
@@ -286,7 +293,6 @@
     .cy-table.all-empty { background: #f1f5f9; border: 2px dashed var(--color-muted); justify-content: center; cursor: default; }
     .cy-table.all-empty .cy-table-title { font-size: 22px; color: #64748b; margin-bottom: 0; }
 
-    /* 確保寬度與原版一致，避免擋住右側椅子 */
     .table-cap-2 { width: 165px; height: 125px; }
     .table-cap-4 { width: 220px; height: 180px; }
     .table-cap-6 { width: 280px; height: 180px; }
@@ -330,7 +336,6 @@
       flex-shrink: 0;
     }
 
-    /* 椅子層級提高到 3，避免 B3 等桌身上方邊緣遮擋 */
     .seat-mark {
       position: absolute;
       background: #1e293b;
@@ -491,7 +496,6 @@
     <div class="cy-canvas-wrapper">
       <div class="cy-header-panel">
         <h1>川玥：11/20 (五) 現場座位圖</h1>
-        <!-- 修正縮放後與正老林等大 -->
         <div class="cy-legend-scaled">
           <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
           <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
@@ -505,35 +509,33 @@
         <div class="cy-center-island"></div>
         <div class="cy-entrance-box">門口</div>
 
-        <!-- 緊湊尺寸確保所有椅子不被遮擋 -->
         <div class="cy-table table-cap-2" style="left: 50px; top: 35px;"><div class="cy-table-title">X1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張維霖</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳德中</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 250px; top: 35px;"><div class="cy-table-title">X2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雯翊</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 250px; top: 35px;"><div class="cy-table-title">X2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雯翊</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">張雯翊親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">張雯翊親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-4" style="left: 505px; top: 35px;"><div class="cy-table-title">X3</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">呂淑婷</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">紀少豐</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">薛巧柔</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">江懿蕙</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
         <div class="cy-table table-cap-2" style="left: 760px; top: 35px;"><div class="cy-table-title">X4</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">石欣鑫</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">簡雪麗</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
         <div class="cy-table table-cap-6" style="left: 960px; top: 35px;"><div class="cy-table-title">X5</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">盧奕汝</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林家箐</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">許秉程</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">黃奕勛</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖冬兒</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">游雅惠</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
         <div class="cy-table table-cap-2" style="left: 1275px; top: 35px;"><div class="cy-table-title">X6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">李曉青</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林瑋豪</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
         <div class="cy-table table-cap-2" style="left: 1475px; top: 35px;"><div class="cy-table-title">X7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">林卉榛</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王曼萍</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
         <div class="cy-table table-cap-4" style="left: 1675px; top: 35px;"><div class="cy-table-title">X8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">黃治瑀</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王美娜</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">雷晴安</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳湛于</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-2" style="left: 1930px; top: 35px;"><div class="cy-table-title">X9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陳儷文</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳儷文家屬</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-2" style="left: 1930px; top: 35px;"><div class="cy-table-title">X9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陳儷文</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">陳儷文家屬</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
 
-        <!-- X10 ~ X14 -->
-        <div class="cy-table table-cap-4" style="left: 660px; top: 250px;"><div class="cy-table-title">X10</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雅婷</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雅婷親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">張鈺晨</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1005px; top: 250px;"><div class="cy-table-title">X11</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇雅惠</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">鄭家吟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳苡萱親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1350px; top: 250px;"><div class="cy-table-title">X12</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">賴政嘉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬1</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬2</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬3</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 660px; top: 250px;"><div class="cy-table-title">X10</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雅婷</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">張雅婷親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">張鈺晨</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1005px; top: 250px;"><div class="cy-table-title">X11</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇雅惠</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">鄭家吟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">陳苡萱親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1350px; top: 250px;"><div class="cy-table-title">X12</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">賴政嘉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">賴政嘉親屬1</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">賴政嘉親屬2</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">賴政嘉親屬3</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
         <div class="cy-table table-cap-6" style="left: 1665px; top: 250px;"><div class="cy-table-title">X13</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">陳雅芳</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳采歆</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">張晏豪</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">史曜瑋</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">洪霈哲</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳韋如</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-6" style="left: 2010px; top: 250px;"><div class="cy-table-title">X14</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">羅珮蓉</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">黃富麟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林榮新</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林榮新親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳逸修</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-6" style="left: 2010px; top: 250px;"><div class="cy-table-title">X14</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">羅珮蓉</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">黃富麟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林榮新</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">林榮新親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳逸修</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
 
-        <!-- Q10 ~ Q14 -->
-        <div class="cy-table table-cap-6 all-empty" style="left: 630px; top: 470px;"><div class="cy-table-title">Q10</div></div>
-        <div class="cy-table table-cap-6 all-empty" style="left: 975px; top: 470px;"><div class="cy-table-title">Q11</div></div>
-        <div class="cy-table table-cap-6 all-empty" style="left: 1320px; top: 470px;"><div class="cy-table-title">Q12</div></div>
-        <div class="cy-table table-cap-6 all-empty" style="left: 1665px; top: 470px;"><div class="cy-table-title">Q13</div></div>
-        <div class="cy-table table-cap-6 all-empty" style="left: 2010px; top: 470px;"><div class="cy-table-title">Q14</div></div>
+        <!-- Q10 ~ Q14 (上移 35px，top: 435px) -->
+        <div class="cy-table table-cap-6 all-empty" style="left: 630px; top: 435px;"><div class="cy-table-title">Q10</div></div>
+        <div class="cy-table table-cap-6 all-empty" style="left: 975px; top: 435px;"><div class="cy-table-title">Q11</div></div>
+        <div class="cy-table table-cap-6 all-empty" style="left: 1320px; top: 435px;"><div class="cy-table-title">Q12</div></div>
+        <div class="cy-table table-cap-6 all-empty" style="left: 1665px; top: 435px;"><div class="cy-table-title">Q13</div></div>
+        <div class="cy-table table-cap-6 all-empty" style="left: 2010px; top: 435px;"><div class="cy-table-title">Q14</div></div>
 
         <!-- Q2 ~ Q9 & B3 -->
         <div class="cy-table table-cap-4" style="left: 60px; top: 660px;"><div class="cy-table-title">Q2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">劉明德</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">戴竹君</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">劉文易</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 315px; top: 660px;"><div class="cy-table-title">Q5</div></div>
-        <div class="cy-table table-cap-4" style="left: 660px; top: 660px;"><div class="cy-table-title">Q6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇威仁</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬3</span><span class="pill pill-neutral cy-m-soup">現場點</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 660px; top: 660px;"><div class="cy-table-title">Q6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇威仁</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">蘇威仁親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">蘇威仁親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">蘇威仁親屬3</span><span class="pill pill-neutral cy-m-soup">現場點</span></div></div></div>
         <div class="cy-table table-cap-4" style="left: 1005px; top: 660px;"><div class="cy-table-title">Q7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蕭名宏</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">翁鈺雯</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖苑茹</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-4" style="left: 1350px; top: 660px;"><div class="cy-table-title">Q8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">趙文琳</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">艾玉芝</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">蔡家榮</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳晉磊</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
         <div class="cy-table table-cap-4" style="left: 1695px; top: 660px;"><div class="cy-table-title">Q9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張隆昌</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">邱芯柔</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">曾文政</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林政宏</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
@@ -549,11 +551,11 @@
         <div class="cy-table table-cap-4 all-empty" style="left: 1005px; top: 1160px;"><div class="cy-table-title">A9</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1350px; top: 1160px;"><div class="cy-table-title">A10</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1695px; top: 1160px;"><div class="cy-table-title">A11</div></div>
-        <div class="cy-table table-cap-8" style="left: 1980px; top: 1160px;"><div class="cy-table-title">B1</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">張欣慧</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林哲永</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林哲永親屬(未滿3歲)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">林佩蓉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林雅雯</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳永龍</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">姜韋如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-8" style="left: 1980px; top: 1160px;"><div class="cy-table-title">B1</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">張欣慧</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林哲永</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">林哲永親屬(未滿3歲)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">林佩蓉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林雅雯</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳永龍</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">姜韋如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
 
         <!-- A1 ~ A5 -->
-        <div class="cy-table table-cap-2" style="left: 300px; top: 1440px;"><div class="cy-table-title">A1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陸青梅</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陸青梅親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 515px; top: 1410px;"><div class="cy-table-title">A2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">史乃云</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">吳淑如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">吳淑如親屬(5歲小孩共鍋)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-2" style="left: 300px; top: 1440px;"><div class="cy-table-title">A1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陸青梅</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">陸青梅親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 515px; top: 1410px;"><div class="cy-table-title">A2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">史乃云</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">吳淑如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item is-rel"><span class="cy-m-name is-rel">吳淑如親屬(5歲小孩共鍋)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 785px; top: 1410px;"><div class="cy-table-title">A3</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 1055px; top: 1410px;"><div class="cy-table-title">A4</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1385px; top: 1410px;"><div class="cy-table-title">A5</div></div>
@@ -789,14 +791,14 @@
       </div>
 
       <div class="bw-notice-box">
-        <span>請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
+        <span>📢 請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
 
       <div class="bw-table-wrapper">
         <table class="bw-table">
           <thead>
             <tr>
-              <th style="width: 130px;">姓名</th>
+              <th style="width: 130px;">桌次</th>
               <th>個人加點品項</th>
               <th style="width: 100px; text-align: right;">加點總額</th>
               <th style="min-width: 330px;">補助後費用試算</th>
@@ -870,7 +872,7 @@
             <tr>
               <td class="bw-name-cell">賴婷瑀</td>
               <td><div class="items-container"><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">茭白筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
-              <td class="amount-cell">$420</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
+              <td class="amount-cell">$420</td><td class="calc-cell"><span class="pill pill-success">未超額, 自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">蔡文豪</td>
@@ -967,20 +969,83 @@
       </div>
 
       <div class="bw-notice-box">
-        <span>請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
+        <span>📢 請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
 
       <div class="bw-table-wrapper">
         <table class="bw-table">
           <thead>
             <tr>
-              <th style="width: 120px;">姓名</th>
+              <th style="width: 120px;">桌次</th>
               <th>個人加點品項</th>
               <th style="width: 90px; text-align: right;">加點總額</th>
               <th style="min-width: 330px;">補助後費用試算</th>
             </tr>
           </thead>
           <tbody>
+            <!-- 4人桌移至前方 -->
+            <tr class="table-group-header">
+              <td colspan="2" class="group-title-cell">4人桌-01（3人）</td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
+            </tr>
+            <tr>
+              <td class="bw-name-cell">陳湘琦</td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$220</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $270 可扣抵親屬）</span></td>
+            </tr>
+            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 1</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
+            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
+            <tr class="subtotal-row">
+              <td colspan="4" style="text-align: right;">
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $660 － 員工額度 $270 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $390</strong>
+              </td>
+            </tr>
+
+            <tr class="table-group-header">
+              <td colspan="2" class="group-title-cell">4人桌-02（3人）</td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
+            </tr>
+            <tr>
+              <td class="bw-name-cell">張俊銘</td>
+              <td><div class="items-container"><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$100</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $170 可扣抵親屬）</span></td>
+            </tr>
+            <tr>
+              <td class="bw-name-cell is-rel">張俊銘親屬 1</td>
+              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
+            </tr>
+            <tr>
+              <td class="bw-name-cell is-rel">張俊銘親屬 2</td>
+              <td><div class="items-container"><span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
+            </tr>
+            <tr class="subtotal-row">
+              <td colspan="4" style="text-align: right;">
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $740 － 員工餘額 $170 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $570</strong>
+              </td>
+            </tr>
+
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">4人桌-03（4人）</td></tr>
+            <tr>
+              <td class="bw-name-cell">林怡君</td>
+              <td><div class="items-container"><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
+              <td class="amount-cell">$250</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $102 可扣抵親屬）</span></td>
+            </tr>
+            <tr>
+              <td class="bw-name-cell is-rel">林怡君親屬 1</td>
+              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
+              <td class="amount-cell">$120</td><td class="calc-cell">基本套餐費 $247 ＋ 加點 $120 ＝ 應付 $367</td>
+            </tr>
+            <tr><td class="bw-name-cell is-rel">林怡君親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
+            <tr><td class="bw-name-cell is-rel">林怡君親屬 3</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
+            <tr class="subtotal-row">
+              <td colspan="4" style="text-align: right;">
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $861 － 員工餘額 $102 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $759</strong>
+              </td>
+            </tr>
+
+            <!-- 6人桌移至後方 -->
             <tr class="table-group-header"><td colspan="3" class="group-title-cell">6人桌-01（6人）</td><td class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">需兒童椅 × 1</span></td></tr>
             <tr>
               <td class="bw-name-cell">林欣潔</td>
@@ -1042,67 +1107,6 @@
               <td><span class="items-empty">(無加點)</span></td>
               <td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 ＝ <span class="pill pill-danger">自付 $198</span></td>
             </tr>
-
-            <tr class="table-group-header">
-              <td colspan="2" class="group-title-cell">4人桌-01（3人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell">陳湘琦</td>
-              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
-              <td class="amount-cell">$220</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $270 可扣抵親屬）</span></td>
-            </tr>
-            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 1</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
-            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
-            <tr class="subtotal-row">
-              <td colspan="4" style="text-align: right;">
-                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $660 － 員工額度 $270 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $390</strong>
-              </td>
-            </tr>
-
-            <tr class="table-group-header">
-              <td colspan="2" class="group-title-cell">4人桌-02（3人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell">張俊銘</td>
-              <td><div class="items-container"><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
-              <td class="amount-cell">$100</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $170 可扣抵親屬）</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell is-rel">張俊銘親屬 1</td>
-              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
-              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell is-rel">張俊銘親屬 2</td>
-              <td><div class="items-container"><span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
-              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
-            </tr>
-            <tr class="subtotal-row">
-              <td colspan="4" style="text-align: right;">
-                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $740 － 員工餘額 $170 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $570</strong>
-              </td>
-            </tr>
-
-            <tr class="table-group-header"><td colspan="4" class="group-title-cell">4人桌-03（4人）</td></tr>
-            <tr>
-              <td class="bw-name-cell">林怡君</td>
-              <td><div class="items-container"><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
-              <td class="amount-cell">$250</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $102 可扣抵親屬）</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell is-rel">林怡君親屬 1</td>
-              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
-              <td class="amount-cell">$120</td><td class="calc-cell">基本套餐費 $247 ＋ 加點 $120 ＝ 應付 $367</td>
-            </tr>
-            <tr><td class="bw-name-cell is-rel">林怡君親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
-            <tr><td class="bw-name-cell is-rel">林怡君親屬 3</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
-            <tr class="subtotal-row">
-              <td colspan="4" style="text-align: right;">
-                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $861 － 員工餘額 $102 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $759</strong>
-              </td>
-            </tr>
           </tbody>
         </table>
       </div>
@@ -1129,16 +1133,17 @@
       [1251, 1398], [1111, 1592], [1181, 1592], [1251, 1592], [1444.3, 1398], [1517.7, 1398],
       [1444.3, 1592], [1517.7, 1592]
     ];
+    // Q10~Q14 兩側垂直椅子同步上移 35px（原 502/547/592 調整為 467/512/557）
     const seatV = [
       [648, 297], [648, 357], [882, 297], [882, 357], [993, 297], [993, 357],
       [1227, 297], [1227, 357], [1338, 297], [1338, 357], [1572, 297], [1572, 357],
       [1653, 282], [1653, 327], [1653, 372], [1947, 282], [1947, 327], [1947, 372],
       [1998, 282], [1998, 327], [1998, 372], [2292, 282], [2292, 327], [2292, 372],
-      [618, 502], [618, 547], [618, 592], [912, 502], [912, 547], [912, 592],
-      [963, 502], [963, 547], [963, 592], [1257, 502], [1257, 547], [1257, 592],
-      [1308, 502], [1308, 547], [1308, 592], [1602, 502], [1602, 547], [1602, 592],
-      [1653, 502], [1653, 547], [1653, 592], [1947, 502], [1947, 547], [1947, 592],
-      [1998, 502], [1998, 547], [1998, 592], [2292, 502], [2292, 547], [2292, 592],
+      [618, 467], [618, 512], [618, 557], [912, 467], [912, 512], [912, 557],
+      [963, 467], [963, 512], [963, 557], [1257, 467], [1257, 512], [1257, 557],
+      [1308, 467], [1308, 512], [1308, 557], [1602, 467], [1602, 512], [1602, 557],
+      [1653, 467], [1653, 512], [1653, 557], [1947, 467], [1947, 512], [1947, 557],
+      [1998, 467], [1998, 512], [1998, 557], [2292, 467], [2292, 512], [2292, 557],
       [648, 707], [648, 767], [882, 707], [882, 767], [993, 707], [993, 767],
       [1227, 707], [1227, 767], [1338, 707], [1338, 767], [1572, 707], [1572, 767],
       [1683, 707], [1683, 767], [1917, 707], [1917, 767], [648, 1207], [648, 1267],
