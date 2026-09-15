@@ -7,47 +7,37 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📌</text></svg>">
   <style>
     :root {
-      --bg-color: #d8dde6;
-      --table-bg: #ffffff;
-      --table-border: #334155;
-      --table-shadow: rgba(0,0,0,0.1);
-      --seat-color: #1e293b;
-      --pill-yaoshan: #fef3c7;
-      --pill-yaoshan-txt: #92400e;
-      --pill-yaoshan-border: #fde68a;
-      --pill-xungu: #dcfce7;
-      --pill-xungu-txt: #166534;
-      --pill-xungu-border: #bbf7d0;
-      --pill-other: #f1f5f9;
-      --pill-other-txt: #475569;
-      --pill-other-border: #e2e8f0;
+      --color-primary: #2563eb;
+      --color-primary-light: #dbeafe;
+      --color-primary-dashed: #3b82f6;
+      --color-dark: #0f172a;
+      --color-body: #1e293b;
+      --color-sub: #475569;
+      --color-muted: #94a3b8;
+      --color-border: #cbd5e1;
+      --color-border-light: #e2e8f0;
+      --color-card-bg: #ffffff;
+      --color-bg-page: #e2e8f0;
+      --color-relative: #0369a1;
+      --color-brand: #991b1b;
 
-      /* 霸味樣式變數 */
-      --brand-red: #991b1b;
-      --relative-color: #0369a1;
-      --pill-zero-bg: #dcfce7;
-      --pill-zero-txt: #15803d;
-      --pill-pay-bg: #fee2e2;
-      --pill-pay-txt: #b91c1c;
+      /* 統一標籤色彩體系 */
+      --pill-warn-bg: #fff7ed; --pill-warn-txt: #c2410c; --pill-warn-bd: #fdba74;
+      --pill-ys-bg: #fef3c7; --pill-ys-txt: #92400e; --pill-ys-bd: #fde68a;
+      --pill-xg-bg: #dcfce7; --pill-xg-txt: #166534; --pill-xg-bd: #bbf7d0;
+      --pill-success-bg: #dcfce7; --pill-success-txt: #15803d; --pill-success-bd: #bbf7d0;
+      --pill-danger-bg: #fee2e2; --pill-danger-txt: #b91c1c; --pill-danger-bd: #fecaca;
+      --pill-neutral-bg: #f1f5f9; --pill-neutral-txt: #475569; --pill-neutral-bd: #e2e8f0;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
     html, body {
-      margin: 0;
-      padding: 0;
-      background-color: #e2e8f0;
+      background-color: var(--color-bg-page);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang TC", "Microsoft JhengHei", sans-serif;
-      color: #1e293b;
+      color: var(--color-body);
       min-height: 100vh;
     }
-
-    body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+    body { padding: 16px; display: flex; flex-direction: column; align-items: center; }
 
     /* 頂部導覽列 */
     .nav-bar {
@@ -56,7 +46,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: #ffffff;
+      background: var(--color-card-bg);
       padding: 12px 20px;
       border-radius: 12px;
       box-shadow: 0 4px 14px rgba(0,0,0,0.06);
@@ -64,64 +54,29 @@
       position: sticky;
       top: 10px;
       z-index: 1000;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid var(--color-border);
       flex-wrap: wrap;
       gap: 12px;
     }
-
-    .nav-title {
-      font-size: 19px;
-      font-weight: 800;
-      color: #0f172a;
-    }
-
-    .nav-controls {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
-    /* 搜尋外框與導覽按鈕 */
+    .nav-title { font-size: 19px; font-weight: 800; color: var(--color-dark); }
+    .nav-controls { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
     .search-wrapper {
       display: flex;
       align-items: center;
       background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid var(--color-border);
       border-radius: 8px;
       padding: 2px 6px 2px 10px;
-      transition: all 0.2s;
+      transition: all 0.2s ease;
     }
-
     .search-wrapper:focus-within {
-      border-color: #2563eb;
+      border-color: var(--color-primary);
       box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
-      background: #ffffff;
+      background: #fff;
     }
-
-    .search-icon {
-      font-size: 13px;
-      color: #64748b;
-      margin-right: 6px;
-    }
-
-    .search-input {
-      border: none;
-      background: transparent;
-      outline: none;
-      font-size: 13.5px;
-      width: 150px;
-      padding: 6px 0;
-    }
-
-    .search-counter {
-      font-size: 11.5px;
-      font-weight: 700;
-      color: #64748b;
-      margin: 0 6px;
-      white-space: nowrap;
-    }
-
+    .search-icon { font-size: 13px; color: #64748b; margin-right: 6px; }
+    .search-input { border: none; background: transparent; outline: none; font-size: 13.5px; width: 150px; padding: 6px 0; }
+    .search-counter { font-size: 11.5px; font-weight: 700; color: #64748b; margin: 0 6px; white-space: nowrap; }
     .search-btn {
       border: none;
       background: #e2e8f0;
@@ -137,21 +92,11 @@
       justify-content: center;
       margin-left: 2px;
     }
-
-    .search-btn:hover {
-      background: #cbd5e1;
-      color: #0f172a;
-    }
-
-    .tab-group {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .search-btn:hover { background: #cbd5e1; color: var(--color-dark); }
+    .tab-group { display: flex; flex-wrap: wrap; gap: 6px; }
     .tab-btn {
       padding: 8px 14px;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid var(--color-border);
       background: #f8fafc;
       border-radius: 8px;
       font-size: 13.5px;
@@ -161,76 +106,102 @@
       transition: all 0.2s ease;
       white-space: nowrap;
     }
-
-    .tab-btn:hover {
-      background: #e2e8f0;
-    }
-
+    .tab-btn:hover { background: #e2e8f0; }
     .tab-btn.active {
-      background: #0f172a;
-      color: #ffffff;
-      border-color: #0f172a;
+      background: var(--color-dark);
+      color: #fff;
+      border-color: var(--color-dark);
       box-shadow: 0 2px 8px rgba(15, 23, 42, 0.25);
     }
 
-    /* 分頁容器 */
-    .tab-view {
-      display: none;
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .tab-view.active {
-      display: flex;
-    }
-
-    /* 搜尋高亮狀態 */
-    .search-highlight-all {
-      outline: 2px dashed #3b82f6 !important;
-      background-color: #eff6ff !important;
-    }
-
-    /* 當前選定焦點目標 */
-    .search-highlight-active {
-      outline: 3px solid #2563eb !important;
-      background-color: #dbeafe !important;
-      animation: pulse-glow 1.5s infinite;
-      z-index: 10 !important;
-    }
-
-    .search-table-target {
-      outline: 3px solid #ef4444 !important;
-      box-shadow: 0 0 16px rgba(239, 68, 68, 0.4) !important;
-    }
-
+    /* 分頁容器與高亮 */
+    .tab-view { display: none; width: 100%; flex-direction: column; align-items: center; }
+    .tab-view.active { display: flex; }
+    .search-highlight-all { outline: 2px dashed var(--color-primary-dashed) !important; background-color: #eff6ff !important; }
+    .search-highlight-active { outline: 3px solid var(--color-primary) !important; background-color: var(--color-primary-light) !important; animation: pulse-glow 1.5s infinite; z-index: 10 !important; }
+    .search-table-target { outline: 3px solid #ef4444 !important; box-shadow: 0 0 16px rgba(239, 68, 68, 0.4) !important; }
     @keyframes pulse-glow {
       0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
       70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
       100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
     }
 
-    /* ==================== 川玥 樣式 ==================== */
+    /* 統一標籤體系 (Unified Pill System) */
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      border-radius: 6px;
+      white-space: nowrap;
+      vertical-align: middle;
+      line-height: 1.2;
+      border: 1px solid transparent;
+      padding: 2.5px 7px;
+      font-size: 12px;
+    }
+    .pill-round { border-radius: 12px; }
+    .pill-sm { font-size: 11px; padding: 1.5px 5px; border-radius: 4px; }
+
+    .pill-ys { background: var(--pill-ys-bg); color: var(--pill-ys-txt); border-color: var(--pill-ys-bd); }
+    .pill-xg { background: var(--pill-xg-bg); color: var(--pill-xg-txt); border-color: var(--pill-xg-bd); }
+    .pill-warn { background: var(--pill-warn-bg); color: var(--pill-warn-txt); border-color: var(--pill-warn-bd); }
+    .pill-success { background: var(--pill-success-bg); color: var(--pill-success-txt); border-color: var(--pill-success-bd); }
+    .pill-danger { background: var(--pill-danger-bg); color: var(--pill-danger-txt); border-color: var(--pill-danger-bd); }
+    .pill-neutral { background: var(--pill-neutral-bg); color: var(--pill-neutral-txt); border-color: var(--pill-neutral-bd); }
+
+    .is-rel { color: var(--color-relative) !important; font-weight: 700; }
+    .status-dot { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+
+    /* 共通卡片結構 */
+    .common-card {
+      width: 100%;
+      max-width: 1240px;
+      background: var(--color-card-bg);
+      border: 1.5px solid var(--color-border);
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
+    }
+    .common-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--color-border-light);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .common-title {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--color-brand);
+      letter-spacing: 0.5px;
+    }
+    .common-legend {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--color-sub);
+    }
+
+    /* ==================== 1. 川玥 ==================== */
     .cy-canvas-wrapper {
       display: flex;
       flex-direction: column;
       align-items: center;
       zoom: 0.58;
     }
-
     @media (max-width: 1200px) {
-      .cy-canvas-wrapper {
-        zoom: 1;
-      }
-      .nav-bar {
-        width: 2360px;
-        max-width: 2360px;
-      }
+      .cy-canvas-wrapper { zoom: 1; }
+      .nav-bar { width: 2360px; max-width: 2360px; }
     }
-
     .cy-header-panel {
       width: 2360px;
-      background: #ffffff;
+      background: var(--color-card-bg);
       padding: 20px 32px;
       border-radius: 14px;
       box-shadow: 0 4px 16px rgba(0,0,0,0.06);
@@ -239,79 +210,65 @@
       align-items: center;
       margin-bottom: 20px;
     }
-
     .cy-header-panel h1 {
       font-size: 26px;
       font-weight: 800;
-      color: #991b1b;
+      color: var(--color-brand);
       letter-spacing: 0.5px;
     }
 
-    .cy-legend { display: flex; gap: 16px; font-size: 14px; align-items: center; }
-    .cy-legend-item { display: flex; align-items: center; gap: 6px; font-weight: 600; }
-    .cy-legend-pill { padding: 4px 12px; border-radius: 20px; font-size: 13px; font-weight: 700; }
-    .lp-ys { background: var(--pill-yaoshan); color: var(--pill-yaoshan-txt); border: 1px solid var(--pill-yaoshan-border); }
-    .lp-xg { background: var(--pill-xungu); color: var(--pill-xungu-txt); border: 1px solid var(--pill-xungu-border); }
-    .lp-other { background: var(--pill-other); color: var(--pill-other-txt); border: 1px solid var(--pill-other-border); }
-    .lp-vacant { background: #f8fafc; color: #94a3b8; border: 1.5px dashed #94a3b8; }
+    /* 川玥圖例大小：精準補償 zoom 0.58，視覺效果與正老林一致 */
+    .cy-legend-scaled {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 23px;
+      font-weight: 700;
+      color: var(--color-sub);
+    }
+    .cy-legend-scaled .status-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 4px;
+      display: inline-block;
+      margin-right: 6px;
+    }
+    .cy-legend-scaled .pill {
+      font-size: 22px;
+      padding: 6px 18px;
+      border-radius: 24px;
+    }
 
     .cy-floor-container {
       width: 2360px;
       height: 1700px;
-      background-color: var(--bg-color);
+      background-color: #d8dde6;
       position: relative;
       border-radius: 18px;
       box-shadow: 0 12px 40px rgba(0,0,0,0.16);
-      border: 4px solid #cbd5e1;
+      border: 4px solid var(--color-border);
     }
-
     .cy-pillar-left {
-      position: absolute;
-      left: 560px;
-      top: 250px;
-      width: 38px;
-      height: 380px;
-      background: #94a3b8;
-      border-radius: 6px;
-      box-shadow: inset 2px 2px 5px rgba(0,0,0,0.25);
+      position: absolute; left: 560px; top: 250px; width: 38px; height: 380px;
+      background: var(--color-muted); border-radius: 6px; box-shadow: inset 2px 2px 5px rgba(0,0,0,0.25);
     }
-
     .cy-center-island {
-      position: absolute;
-      left: 630px;
-      top: 930px;
-      width: 1280px;
-      height: 145px;
-      background: #94a3b8;
-      border-radius: 8px;
-      box-shadow: inset 2px 2px 6px rgba(0,0,0,0.25);
+      position: absolute; left: 630px; top: 930px; width: 1280px; height: 145px;
+      background: var(--color-muted); border-radius: 8px; box-shadow: inset 2px 2px 6px rgba(0,0,0,0.25);
     }
-
     .cy-entrance-box {
-      position: absolute;
-      left: 60px;
-      top: 1200px;
-      width: 150px;
-      height: 80px;
-      background: #cbd5e1;
-      border: 3px solid #64748b;
-      border-radius: 10px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
-      font-weight: 900;
-      color: #1e293b;
-      letter-spacing: 4px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      position: absolute; left: 60px; top: 1200px; width: 150px; height: 80px;
+      background: var(--color-border); border: 3px solid #64748b; border-radius: 10px;
+      display: flex; justify-content: center; align-items: center;
+      font-size: 24px; font-weight: 900; color: var(--color-body);
+      letter-spacing: 4px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
-
     .cy-table {
       position: absolute;
-      background: var(--table-bg);
-      border: 2.5px solid var(--table-border);
+      background: var(--color-card-bg);
+      border: 2.5px solid #334155;
       border-radius: 12px;
-      box-shadow: 0 4px 10px var(--table-shadow);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       padding: 5px 6px;
       display: flex;
       flex-direction: column;
@@ -320,106 +277,78 @@
       z-index: 2;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
     .cy-table:not(.all-empty):hover {
       transform: scale(1.025);
-      border-color: #2563eb;
+      border-color: var(--color-primary);
       box-shadow: 0 0 20px rgba(37, 99, 235, 0.45), 0 8px 16px rgba(0, 0, 0, 0.15);
       z-index: 8;
     }
-
-    .cy-table.all-empty { background: #f1f5f9; border: 2px dashed #94a3b8; justify-content: center; cursor: default; }
+    .cy-table.all-empty { background: #f1f5f9; border: 2px dashed var(--color-muted); justify-content: center; cursor: default; }
     .cy-table.all-empty .cy-table-title { font-size: 22px; color: #64748b; margin-bottom: 0; }
 
+    /* 確保寬度與原版一致，避免擋住右側椅子 */
     .table-cap-2 { width: 165px; height: 125px; }
     .table-cap-4 { width: 220px; height: 180px; }
     .table-cap-6 { width: 280px; height: 180px; }
     .table-cap-8 { width: 340px; height: 190px; }
 
-    .cy-table-title { font-size: 18px; font-weight: 900; color: #0f172a; margin-bottom: 4px; line-height: 1.1; }
+    .cy-table-title { font-size: 18px; font-weight: 900; color: var(--color-dark); margin-bottom: 4px; line-height: 1.1; }
     .cy-members-container { width: 100%; display: flex; flex-direction: column; gap: 2.5px; }
     .cy-members-container.two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5px 4px; }
 
     .cy-member-item {
-      background: #ffffff;
+      background: var(--color-card-bg);
       border-radius: 5px;
-      padding: 2.5px 6px;
+      padding: 2.5px 5px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 13.5px;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--color-border-light);
       gap: 4px;
     }
     .cy-member-item.vacant {
       background: #f8fafc;
-      border: 1.5px dashed #94a3b8;
-      color: #94a3b8;
+      border: 1.5px dashed var(--color-muted);
+      color: var(--color-muted);
       justify-content: center;
       font-weight: 700;
-      font-size: 13px;
+      font-size: 13.5px;
       letter-spacing: 2px;
-      min-height: 25px;
+      min-height: 26px;
+    }
+    .cy-m-name {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--color-dark);
+      word-break: break-all;
+      line-height: 1.15;
+    }
+    .cy-m-soup {
+      font-size: 13.5px !important;
+      padding: 1.5px 5.5px !important;
+      border-radius: 4px !important;
+      flex-shrink: 0;
     }
 
-    .cy-m-name { font-weight: 700; font-size: 13.5px; color: #0f172a; word-break: break-all; line-height: 1.15; }
-    .cy-m-name.is-rel { color: #0369a1; }
-
-    .cy-m-soup { font-size: 11.5px; padding: 1.5px 5.5px; border-radius: 4px; font-weight: 800; white-space: nowrap; flex-shrink: 0; }
-    .soup-ys { background: var(--pill-yaoshan); color: var(--pill-yaoshan-txt); border: 1px solid var(--pill-yaoshan-border); }
-    .soup-xg { background: var(--pill-xungu); color: var(--pill-xungu-txt); border: 1px solid var(--pill-xungu-border); }
-    .soup-other { background: var(--pill-other); color: var(--pill-other-txt); border: 1px solid var(--pill-other-border); }
-
-    .seat-mark { position: absolute; background: var(--seat-color); border-radius: 4px; pointer-events: none; z-index: 1; }
+    /* 椅子層級提高到 3，避免 B3 等桌身上方邊緣遮擋 */
+    .seat-mark {
+      position: absolute;
+      background: #1e293b;
+      border-radius: 4px;
+      pointer-events: none;
+      z-index: 3;
+    }
     .seat-h { height: 10px; width: 28px; }
     .seat-v { width: 10px; height: 26px; }
 
-    /* ==================== 正老林 樣式 ==================== */
-    .zl-sheet-card {
-      width: 100%;
-      max-width: 1240px;
-      background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.05);
-    }
-
-    .zl-sheet-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .zl-sheet-title {
-      font-size: 22px;
-      font-weight: 800;
-      color: #991b1b;
-      letter-spacing: 0.5px;
-    }
-
-    .zl-sheet-legend-top {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      font-size: 13.5px;
-      font-weight: 700;
-      color: #334155;
-    }
-
+    /* ==================== 2. 正老林 ==================== */
     .zl-floor-stage {
       background: #f8fafc;
-      border: 1.5px solid #cbd5e1;
+      border: 1.5px solid var(--color-border);
       border-radius: 8px;
       padding: 16px;
       position: relative;
     }
-
     .zl-entrance-box {
       position: absolute;
       left: 16px;
@@ -427,29 +356,25 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: #fee2e2;
+      background: var(--pill-danger-bg);
       border: 2px solid #ef4444;
       padding: 6px 14px;
       border-radius: 6px;
-      color: #991b1b;
+      color: var(--color-brand);
       font-size: 13px;
       font-weight: 800;
       z-index: 5;
     }
-
-    .zl-entrance-arrow { font-size: 18px; font-weight: 900; color: #dc2626; }
-
     .zl-floor-grid {
       display: grid;
       grid-template-columns: 200px 200px 1fr 1fr;
       gap: 16px;
       padding-bottom: 60px;
     }
-
     .zl-col-title {
       font-size: 12px;
       font-weight: bold;
-      color: #475569;
+      color: var(--color-sub);
       text-align: center;
       background: #e2e8f0;
       padding: 4px;
@@ -457,160 +382,49 @@
       margin-bottom: 8px;
       letter-spacing: 0.5px;
     }
-
-    .zl-col-door-outer, .zl-col-door-inner {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    }
-
-    .zl-col-vertical {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
+    .zl-col-door-outer, .zl-col-door-inner { display: flex; flex-direction: column; justify-content: flex-end; }
+    .zl-col-vertical { display: flex; flex-direction: column; gap: 8px; }
     .zl-table-card {
-      background: #ffffff;
+      background: var(--color-card-bg);
       border: 1.5px solid #475569;
       border-radius: 6px;
       padding: 8px 10px;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
       display: flex;
       flex-direction: column;
       gap: 6px;
       transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
-
     .zl-table-card:not(.empty-table):hover {
       transform: translateY(-2px);
-      border-color: #2563eb;
-      box-shadow: 0 0 16px rgba(37, 99, 235, 0.35), 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-primary);
+      box-shadow: 0 0 16px rgba(37, 99, 235, 0.35), 0 4px 12px rgba(0,0,0,0.08);
       z-index: 5;
     }
-
     .zl-table-card.door-card-h { height: 120px; justify-content: center; }
-    .zl-table-card.empty-table { border: 1.5px dashed #cbd5e1; background: #f1f5f9; opacity: 0.8; }
-
-    .zl-table-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .zl-table-id { font-size: 13px; font-weight: 800; color: #0f172a; }
-
-    .zl-soup-tag {
-      font-size: 11px;
-      background: #fff7ed;
-      color: #c2410c;
-      border: 1px solid #fdba74;
-      padding: 1px 6px;
-      border-radius: 10px;
-      font-weight: 700;
-    }
-
+    .zl-table-card.empty-table { border: 1.5px dashed var(--color-border); background: #f1f5f9; opacity: 0.8; }
+    .zl-table-meta { display: flex; justify-content: space-between; align-items: center; }
+    .zl-table-id { font-size: 13px; font-weight: 800; color: var(--color-dark); }
     .seats-2p { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .seats-4p { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; }
-
     .zl-seat-cell {
       background: #f8fafc;
-      border: 1px solid #e2e8f0;
+      border: 1px solid var(--color-border-light);
       border-radius: 4px;
       padding: 4px 6px;
-      font-size: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 24px;
-    }
-
-    .zl-seat-cell .name {
-      font-weight: 700;
-      color: #1e293b;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .zl-seat-cell.is-rel .name { color: #0369a1; }
-    .zl-seat-cell.is-blank { border: 1px dashed #cbd5e1; color: #94a3b8; justify-content: center; font-size: 11px; }
-
-    .fee-pill {
-      font-size: 10px;
-      background: #fee2e2;
-      color: #b91c1c;
-      font-weight: 800;
-      padding: 0 4px;
-      border-radius: 3px;
-      margin-left: 2px;
-      white-space: nowrap;
-    }
-
-    .free-pill {
-      font-size: 10px;
-      background: #dcfce7;
-      color: #15803d;
-      font-weight: 800;
-      padding: 0 4px;
-      border-radius: 3px;
-      margin-left: 2px;
-      white-space: nowrap;
-    }
-
-    .zl-legend {
-      display: flex;
-      justify-content: flex-end;
-      gap: 16px;
-      font-size: 12px;
-      color: #475569;
-      margin-top: 12px;
-    }
-
-    .zl-legend-item { display: flex; align-items: center; gap: 5px; }
-    .zl-dot { width: 10px; height: 10px; border-radius: 2px; }
-
-    /* ==================== 霸味 樣式 ==================== */
-    .bw-sheet-card {
-      width: 100%;
-      max-width: 1240px;
-      background: #ffffff;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 12px;
-      padding: 24px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-    }
-
-    .bw-sheet-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 2px solid #e2e8f0;
-      padding-bottom: 14px;
-      margin-bottom: 14px;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    .bw-sheet-title {
-      font-size: 21px;
-      font-weight: 800;
-      color: var(--brand-red);
-    }
-
-    .bw-sheet-legend {
-      display: flex;
-      align-items: center;
-      gap: 14px;
       font-size: 12.5px;
-      font-weight: 600;
-      color: #475569;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 25px;
     }
+    .zl-seat-cell .name { font-weight: 700; color: var(--color-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .zl-seat-cell.is-blank { border: 1px dashed var(--color-border); color: var(--color-muted); justify-content: center; font-size: 11px; }
 
-    /* 霸味專用提示框 */
+    /* ==================== 3. 霸味 ==================== */
     .bw-notice-box {
       background: #eff6ff;
-      border: 1.5px solid #3b82f6;
+      border: 1.5px solid var(--color-primary-dashed);
       border-radius: 8px;
       padding: 12px 18px;
       margin-bottom: 18px;
@@ -623,184 +437,24 @@
       line-height: 1.5;
       box-shadow: 0 2px 6px rgba(59, 130, 246, 0.08);
     }
-
-    .bw-notice-box .notice-icon {
-      font-size: 18px;
-      flex-shrink: 0;
-    }
-
-    .bw-notice-box strong {
-      color: #1d4ed8;
-      font-weight: 800;
-    }
-
-    .bw-table-wrapper {
-      overflow-x: auto;
-      border: 1.5px solid #cbd5e1;
-      border-radius: 8px;
-      background: #ffffff;
-    }
-
-    .bw-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13.5px;
-      text-align: left;
-    }
-
-    .bw-table th {
-      background-color: #f8fafc;
-      color: #475569;
-      font-weight: 700;
-      padding: 12px 14px;
-      border-bottom: 2px solid #cbd5e1;
-      white-space: nowrap;
-      letter-spacing: 0.3px;
-    }
-
-    .bw-table td {
-      padding: 11px 14px;
-      border-bottom: 1px solid #e2e8f0;
-      vertical-align: middle;
-    }
-
-    .bw-table tbody tr:hover {
-      background-color: #f8fafc;
-    }
-
-    .table-group-header td {
-      background-color: #f1f5f9;
-      border-top: 2px solid #cbd5e1;
-      border-bottom: 1.5px solid #cbd5e1;
-      padding: 8px 14px;
-    }
-
-    .table-group-header .group-title-cell {
-      font-weight: 800;
-      color: #0f172a;
-      font-size: 14px;
-    }
-
-    .table-group-header .group-remark-cell {
-      font-size: 12px;
-      font-weight: 600;
-      color: #475569;
-      text-align: right;
-      white-space: nowrap;
-    }
-
-    .remark-tag {
-      display: inline-block;
-      background: #fff7ed;
-      color: #c2410c;
-      border: 1px solid #fdba74;
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-size: 11.5px;
-    }
-
-    .bw-name-cell {
-      font-weight: 700;
-      color: #1e293b;
-      white-space: nowrap;
-    }
-
-    .bw-relative-name {
-      color: var(--relative-color) !important;
-      font-weight: 700;
-    }
-
-    .items-container {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .item-chip {
-      display: inline-flex;
-      align-items: center;
-      background: #f8fafc;
-      border: 1px solid #cbd5e1;
-      border-radius: 4px;
-      padding: 2px 7px;
-      font-size: 12px;
-      line-height: 1.4;
-      color: #334155;
-      font-weight: 500;
-    }
-
-    .item-qty {
-      background: #e2e8f0;
-      color: #0f172a;
-      font-weight: 800;
-      font-size: 11px;
-      padding: 0 5px;
-      border-radius: 3px;
-      margin-left: 5px;
-    }
-
-    .item-price {
-      color: #64748b;
-      font-size: 11px;
-      margin-left: 3px;
-    }
-
-    .items-empty {
-      color: #94a3b8;
-      font-size: 12.5px;
-    }
-
-    .amount-cell {
-      font-weight: 700;
-      white-space: nowrap;
-      text-align: right;
-      color: #0f172a;
-    }
-
-    .calc-cell {
-      font-size: 13px;
-      white-space: nowrap;
-      color: #334155;
-    }
-
-    .calc-subnote {
-      font-size: 11.5px;
-      color: #64748b;
-      display: inline-block;
-      margin-left: 6px;
-    }
-
-    .badge-pay {
-      display: inline-block;
-      padding: 2px 7px;
-      border-radius: 4px;
-      font-weight: 800;
-      font-size: 11.5px;
-      white-space: nowrap;
-      vertical-align: middle;
-    }
-
-    .pay-zero {
-      background-color: var(--pill-zero-bg);
-      color: var(--pill-zero-txt);
-      border: 1px solid #bbf7d0;
-    }
-
-    .pay-need {
-      background-color: var(--pill-pay-bg);
-      color: var(--pill-pay-txt);
-      border: 1px solid #fecaca;
-    }
-
-    .subtotal-row td {
-      background-color: #f8fafc;
-      border-top: 1px dashed #cbd5e1;
-      border-bottom: 2px solid #94a3b8;
-      font-size: 13px;
-      padding: 9px 14px;
-      white-space: nowrap;
-    }
+    .bw-table-wrapper { overflow-x: auto; border: 1.5px solid var(--color-border); border-radius: 8px; background: var(--color-card-bg); }
+    .bw-table { width: 100%; border-collapse: collapse; font-size: 13.5px; text-align: left; }
+    .bw-table th { background-color: #f8fafc; color: var(--color-sub); font-weight: 700; padding: 12px 14px; border-bottom: 2px solid var(--color-border); white-space: nowrap; letter-spacing: 0.3px; }
+    .bw-table td { padding: 11px 14px; border-bottom: 1px solid var(--color-border-light); vertical-align: middle; }
+    .bw-table tbody tr:hover { background-color: #f8fafc; }
+    .table-group-header td { background-color: #f1f5f9; border-top: 2px solid var(--color-border); border-bottom: 1.5px solid var(--color-border); padding: 8px 14px; }
+    .table-group-header .group-title-cell { font-weight: 800; color: var(--color-dark); font-size: 14px; }
+    .table-group-header .group-remark-cell { font-size: 12px; font-weight: 600; color: var(--color-sub); text-align: right; white-space: nowrap; }
+    .bw-name-cell { font-weight: 700; color: var(--color-body); white-space: nowrap; }
+    .items-container { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+    .item-chip { display: inline-flex; align-items: center; background: #f8fafc; border: 1px solid var(--color-border); border-radius: 4px; padding: 2px 7px; font-size: 12px; line-height: 1.4; color: #334155; font-weight: 500; }
+    .item-qty { background: #e2e8f0; color: var(--color-dark); font-weight: 800; font-size: 11px; padding: 0 5px; border-radius: 3px; margin-left: 5px; }
+    .item-price { color: #64748b; font-size: 11px; margin-left: 3px; }
+    .items-empty { color: var(--color-muted); font-size: 12.5px; }
+    .amount-cell { font-weight: 700; white-space: nowrap; text-align: right; color: var(--color-dark); }
+    .calc-cell { font-size: 13px; white-space: nowrap; color: #334155; }
+    .calc-subnote { font-size: 11.5px; color: #64748b; display: inline-block; margin-left: 6px; }
+    .subtotal-row td { background-color: #f8fafc; border-top: 1px dashed var(--color-border); border-bottom: 2px solid #94a3b8; font-size: 13px; padding: 9px 14px; white-space: nowrap; }
 
     @media print {
       body { background: #fff; padding: 0; min-width: 0; }
@@ -811,27 +465,23 @@
 </head>
 <body>
 
-  <!-- 頂部導覽與多筆搜尋區 -->
+  <!-- 頂部導覽列 -->
   <header class="nav-bar">
     <div class="nav-title">永寬化學2026年第四季員工聚餐座位表</div>
-    
     <div class="nav-controls">
-      <!-- 支援多筆循環跳轉的搜尋框 -->
       <div class="search-wrapper">
         <span class="search-icon">🔍</span>
-        <input type="text" id="seatSearch" class="search-input" placeholder="輸入姓名" oninput="initiateSearch(this.value)" onkeydown="handleSearchKey(event)">
+        <input type="text" id="seatSearch" class="search-input" placeholder="輸入姓名">
         <span id="searchCounter" class="search-counter" style="display:none;">0/0</span>
-        <button class="search-btn" title="上一個" onclick="cycleMatch(-1)">▲</button>
-        <button class="search-btn" title="下一個 (Enter)" onclick="cycleMatch(1)">▼</button>
+        <button class="search-btn" title="上一個" id="btnPrev">▲</button>
+        <button class="search-btn" title="下一個 (Enter)" id="btnNext">▼</button>
       </div>
-
-      <!-- 分頁標籤 -->
-      <div class="tab-group">
-        <button class="tab-btn active" onclick="switchMainTab('tab-cy')">川玥 (11/20)</button>
-        <button class="tab-btn" onclick="switchMainTab('tab-zl-1120')">正老林 梯次一 (11/20)</button>
-        <button class="tab-btn" onclick="switchMainTab('tab-zl-1127')">正老林 梯次二 (11/27)</button>
-        <button class="tab-btn" onclick="switchMainTab('tab-bw-1120')">霸味 梯次一 (11/20)</button>
-        <button class="tab-btn" onclick="switchMainTab('tab-bw-1127')">霸味 梯次二 (11/27)</button>
+      <div class="tab-group" id="tabGroup">
+        <button class="tab-btn active" data-tab="tab-cy">川玥 (11/20)</button>
+        <button class="tab-btn" data-tab="tab-zl-1120">正老林 梯次一 (11/20)</button>
+        <button class="tab-btn" data-tab="tab-zl-1127">正老林 梯次二 (11/27)</button>
+        <button class="tab-btn" data-tab="tab-bw-1120">霸味 梯次一 (11/20)</button>
+        <button class="tab-btn" data-tab="tab-bw-1127">霸味 梯次二 (11/27)</button>
       </div>
     </div>
   </header>
@@ -841,272 +491,96 @@
     <div class="cy-canvas-wrapper">
       <div class="cy-header-panel">
         <h1>川玥：11/20 (五) 現場座位圖</h1>
-        <div class="cy-legend">
-          <div class="cy-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
-          <div class="cy-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
-          <div class="cy-legend-item"><span class="cy-legend-pill lp-ys">藥膳 460</span></div>
-          <div class="cy-legend-item"><span class="cy-legend-pill lp-xg">蕈菇 410</span></div>
+        <!-- 修正縮放後與正老林等大 -->
+        <div class="cy-legend-scaled">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
+          <div><span class="pill pill-ys">藥膳 460</span></div>
+          <div><span class="pill pill-xg">蕈菇 410</span></div>
         </div>
       </div>
 
-      <div class="cy-floor-container">
+      <div class="cy-floor-container" id="cyFloor">
         <div class="cy-pillar-left"></div>
         <div class="cy-center-island"></div>
         <div class="cy-entrance-box">門口</div>
 
-        <div class="cy-table table-cap-2" style="left: 50px; top: 35px;"><div class="cy-table-title">X1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張維霖</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳德中</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 250px; top: 35px;"><div class="cy-table-title">X2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雯翊</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬1</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬2</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 505px; top: 35px;"><div class="cy-table-title">X3</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">呂淑婷</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">紀少豐</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">薛巧柔</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">江懿蕙</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-2" style="left: 760px; top: 35px;"><div class="cy-table-title">X4</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">石欣鑫</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">簡雪麗</span><span class="cy-m-soup soup-xg">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-6" style="left: 960px; top: 35px;"><div class="cy-table-title">X5</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">盧奕汝</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林家箐</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">許秉程</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">黃奕勛</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖冬兒</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">游雅惠</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-2" style="left: 1275px; top: 35px;"><div class="cy-table-title">X6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">李曉青</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林瑋豪</span><span class="cy-m-soup soup-xg">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-2" style="left: 1475px; top: 35px;"><div class="cy-table-title">X7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">林卉榛</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王曼萍</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1675px; top: 35px;"><div class="cy-table-title">X8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">黃治瑀</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王美娜</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">雷晴安</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳湛于</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-2" style="left: 1930px; top: 35px;"><div class="cy-table-title">X9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陳儷文</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳儷文家屬</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 660px; top: 250px;"><div class="cy-table-title">X10</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雅婷</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雅婷親屬</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">張鈺晨</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1005px; top: 250px;"><div class="cy-table-title">X11</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇雅惠</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">鄭家吟</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳苡萱親屬</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1350px; top: 250px;"><div class="cy-table-title">X12</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">賴政嘉</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬1</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬2</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬3</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
-        <div class="cy-table table-cap-6" style="left: 1665px; top: 250px;"><div class="cy-table-title">X13</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">陳雅芳</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳采歆</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">張晏豪</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">史曜瑋</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">洪霈哲</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳韋如</span><span class="cy-m-soup soup-xg">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-6" style="left: 2010px; top: 250px;"><div class="cy-table-title">X14</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">羅珮蓉</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">黃富麟</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林榮新</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林榮新親屬</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳逸修</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <!-- 緊湊尺寸確保所有椅子不被遮擋 -->
+        <div class="cy-table table-cap-2" style="left: 50px; top: 35px;"><div class="cy-table-title">X1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張維霖</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳德中</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 250px; top: 35px;"><div class="cy-table-title">X2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雯翊</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雯翊親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 505px; top: 35px;"><div class="cy-table-title">X3</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">呂淑婷</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">紀少豐</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">薛巧柔</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">江懿蕙</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-2" style="left: 760px; top: 35px;"><div class="cy-table-title">X4</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">石欣鑫</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">簡雪麗</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-6" style="left: 960px; top: 35px;"><div class="cy-table-title">X5</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">盧奕汝</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林家箐</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">許秉程</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">黃奕勛</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖冬兒</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">游雅惠</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-2" style="left: 1275px; top: 35px;"><div class="cy-table-title">X6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">李曉青</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林瑋豪</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-2" style="left: 1475px; top: 35px;"><div class="cy-table-title">X7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">林卉榛</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王曼萍</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1675px; top: 35px;"><div class="cy-table-title">X8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">黃治瑀</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">王美娜</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">雷晴安</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳湛于</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-2" style="left: 1930px; top: 35px;"><div class="cy-table-title">X9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陳儷文</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳儷文家屬</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+
+        <!-- X10 ~ X14 -->
+        <div class="cy-table table-cap-4" style="left: 660px; top: 250px;"><div class="cy-table-title">X10</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張雅婷</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">張雅婷親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">張鈺晨</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1005px; top: 250px;"><div class="cy-table-title">X11</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇雅惠</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">鄭家吟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陳苡萱親屬</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1350px; top: 250px;"><div class="cy-table-title">X12</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">賴政嘉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬1</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬2</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">賴政嘉親屬3</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-6" style="left: 1665px; top: 250px;"><div class="cy-table-title">X13</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">陳雅芳</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳采歆</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">張晏豪</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">史曜瑋</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">洪霈哲</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳韋如</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-6" style="left: 2010px; top: 250px;"><div class="cy-table-title">X14</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">羅珮蓉</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">黃富麟</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林榮新</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林榮新親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳逸修</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+
+        <!-- Q10 ~ Q14 -->
         <div class="cy-table table-cap-6 all-empty" style="left: 630px; top: 470px;"><div class="cy-table-title">Q10</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 975px; top: 470px;"><div class="cy-table-title">Q11</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 1320px; top: 470px;"><div class="cy-table-title">Q12</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 1665px; top: 470px;"><div class="cy-table-title">Q13</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 2010px; top: 470px;"><div class="cy-table-title">Q14</div></div>
-        <div class="cy-table table-cap-4" style="left: 60px; top: 660px;"><div class="cy-table-title">Q2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">劉明德</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">戴竹君</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">劉文易</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+
+        <!-- Q2 ~ Q9 & B3 -->
+        <div class="cy-table table-cap-4" style="left: 60px; top: 660px;"><div class="cy-table-title">Q2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">劉明德</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">戴竹君</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">劉文易</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 315px; top: 660px;"><div class="cy-table-title">Q5</div></div>
-        <div class="cy-table table-cap-4" style="left: 660px; top: 660px;"><div class="cy-table-title">Q6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇威仁</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬1</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬2</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬3</span><span class="cy-m-soup soup-other">現場點</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1005px; top: 660px;"><div class="cy-table-title">Q7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蕭名宏</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">翁鈺雯</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖苑茹</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1350px; top: 660px;"><div class="cy-table-title">Q8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">趙文琳</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">艾玉芝</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">蔡家榮</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳晉磊</span><span class="cy-m-soup soup-xg">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 1695px; top: 660px;"><div class="cy-table-title">Q9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張隆昌</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">邱芯柔</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">曾文政</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林政宏</span><span class="cy-m-soup soup-ys">藥膳</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 660px; top: 660px;"><div class="cy-table-title">Q6</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蘇威仁</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬1</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬2</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">蘇威仁親屬3</span><span class="pill pill-neutral cy-m-soup">現場點</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1005px; top: 660px;"><div class="cy-table-title">Q7</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">蕭名宏</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">翁鈺雯</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">廖苑茹</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1350px; top: 660px;"><div class="cy-table-title">Q8</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">趙文琳</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">艾玉芝</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">蔡家榮</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">陳晉磊</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 1695px; top: 660px;"><div class="cy-table-title">Q9</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">張隆昌</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">邱芯柔</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">曾文政</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林政宏</span><span class="pill pill-ys cy-m-soup">藥膳</span></div></div></div>
         <div class="cy-table table-cap-8 all-empty" style="left: 1980px; top: 660px;"><div class="cy-table-title">B3</div></div>
-        <div class="cy-table table-cap-4" style="left: 60px; top: 910px;"><div class="cy-table-title">Q1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">莊雲雅</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">張巧薇</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">游怡屏</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item vacant">空位</div></div></div>
+
+        <!-- Q1 & 預備空桌 -->
+        <div class="cy-table table-cap-4" style="left: 60px; top: 910px;"><div class="cy-table-title">Q1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">莊雲雅</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">張巧薇</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">游怡屏</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 315px; top: 910px;"><div class="cy-table-title">Q4</div></div>
         <div class="cy-table table-cap-8 all-empty" style="left: 1980px; top: 910px;"><div class="cy-table-title">B2</div></div>
+
+        <!-- A8 ~ A11 & B1 -->
         <div class="cy-table table-cap-4 all-empty" style="left: 660px; top: 1160px;"><div class="cy-table-title">A8</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1005px; top: 1160px;"><div class="cy-table-title">A9</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1350px; top: 1160px;"><div class="cy-table-title">A10</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1695px; top: 1160px;"><div class="cy-table-title">A11</div></div>
-        <div class="cy-table table-cap-8" style="left: 1980px; top: 1160px;"><div class="cy-table-title">B1</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">張欣慧</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林哲永</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林哲永親屬(未滿3歲)</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">林佩蓉</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林雅雯</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳永龍</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">姜韋如</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
-        <div class="cy-table table-cap-2" style="left: 300px; top: 1440px;"><div class="cy-table-title">A1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陸青梅</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陸青梅親屬</span><span class="cy-m-soup soup-xg">蕈菇</span></div></div></div>
-        <div class="cy-table table-cap-4" style="left: 515px; top: 1410px;"><div class="cy-table-title">A2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">史乃云</span><span class="cy-m-soup soup-xg">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">吳淑如</span><span class="cy-m-soup soup-ys">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">吳淑如親屬(5歲小孩共鍋)</span><span class="cy-m-soup soup-other">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
+        <div class="cy-table table-cap-8" style="left: 1980px; top: 1160px;"><div class="cy-table-title">B1</div><div class="cy-members-container two-cols"><div class="cy-member-item"><span class="cy-m-name">張欣慧</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林哲永</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">林哲永親屬(未滿3歲)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item"><span class="cy-m-name">林佩蓉</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">林雅雯</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">陳永龍</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name">姜韋如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item vacant">空位</div></div></div>
+
+        <!-- A1 ~ A5 -->
+        <div class="cy-table table-cap-2" style="left: 300px; top: 1440px;"><div class="cy-table-title">A1</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">陸青梅</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">陸青梅親屬</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div></div></div>
+        <div class="cy-table table-cap-4" style="left: 515px; top: 1410px;"><div class="cy-table-title">A2</div><div class="cy-members-container"><div class="cy-member-item"><span class="cy-m-name">史乃云</span><span class="pill pill-xg cy-m-soup">蕈菇</span></div><div class="cy-member-item"><span class="cy-m-name">吳淑如</span><span class="pill pill-ys cy-m-soup">藥膳</span></div><div class="cy-member-item"><span class="cy-m-name is-rel">吳淑如親屬(5歲小孩共鍋)</span><span class="pill pill-neutral cy-m-soup">現場點</span></div><div class="cy-member-item vacant">空位</div></div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 785px; top: 1410px;"><div class="cy-table-title">A3</div></div>
         <div class="cy-table table-cap-6 all-empty" style="left: 1055px; top: 1410px;"><div class="cy-table-title">A4</div></div>
         <div class="cy-table table-cap-4 all-empty" style="left: 1385px; top: 1410px;"><div class="cy-table-title">A5</div></div>
-
-        <!-- 座位標記 -->
-        <div class="seat-mark seat-h" style="left: 118.5px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 118.5px; top: 162.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 309.3px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 382.7px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 309.3px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 382.7px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 564.3px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 637.7px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 564.3px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 637.7px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 828.5px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 828.5px; top: 162.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1016.0px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1086.0px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1156.0px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1016.0px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1086.0px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1156.0px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1343.5px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1343.5px; top: 162.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1543.5px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1543.5px; top: 162.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1734.3px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1807.7px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1734.3px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1807.7px; top: 217.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1998.5px; top: 23.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1998.5px; top: 162.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 297.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 357.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 282.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 327.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 372.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 282.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 327.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 372.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 282.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 327.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 372.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 282.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 327.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 372.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 618.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 618.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 618.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 912.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 912.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 912.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 963.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 963.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 963.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1257.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1257.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1257.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1308.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1308.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1308.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1602.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1602.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1602.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1653.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1947.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1998.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 502.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 547.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 2292.0px; top: 592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 119.3px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 192.7px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 119.3px; top: 842.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 192.7px; top: 842.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 371.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 441.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 511.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 371.0px; top: 842.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 441.0px; top: 842.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 511.0px; top: 842.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1683.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1683.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1917.0px; top: 707.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1917.0px; top: 767.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 648.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 852.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 852.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 852.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 852.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 119.3px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 192.7px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 119.3px; top: 1092.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 192.7px; top: 1092.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 371.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 441.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 511.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 371.0px; top: 1092.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 441.0px; top: 1092.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 511.0px; top: 1092.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 898.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 1102.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 1102.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 1102.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 1102.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 648.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 882.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 993.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1227.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1338.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1572.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1683.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1683.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1917.0px; top: 1207.0px;"></div>
-        <div class="seat-mark seat-v" style="left: 1917.0px; top: 1267.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 1148.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 1148.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 1148.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 1148.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2034.0px; top: 1352.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2102.0px; top: 1352.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2170.0px; top: 1352.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 2238.0px; top: 1352.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 368.5px; top: 1428.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 368.5px; top: 1567.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 574.3px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 647.7px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 574.3px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 647.7px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 844.3px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 917.7px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 844.3px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 917.7px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1111.0px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1181.0px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1251.0px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1111.0px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1181.0px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1251.0px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1444.3px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1517.7px; top: 1398.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1444.3px; top: 1592.0px;"></div>
-        <div class="seat-mark seat-h" style="left: 1517.7px; top: 1592.0px;"></div>
       </div>
     </div>
   </section>
 
   <!-- ==================== 分頁 2：正老林 梯次一 (11/20) ==================== -->
   <section class="tab-view" id="tab-zl-1120">
-    <div class="zl-sheet-card">
-      <div class="zl-sheet-header">
-        <div class="zl-sheet-title">正老林羊肉爐：11/20 (五) 現場座位圖</div>
-        <div class="zl-sheet-legend-top">
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
+    <div class="common-card">
+      <div class="common-header">
+        <div class="common-title">正老林羊肉爐：11/20 (五) 現場座位圖</div>
+        <div class="common-legend">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
         </div>
       </div>
 
       <div class="zl-floor-stage">
-        <div class="zl-entrance-box">
-          <span class="zl-entrance-arrow">←</span>
-          <span>【大門入口】</span>
-        </div>
-
+        <div class="zl-entrance-box"><span>← 【大門入口】</span></div>
         <div class="zl-floor-grid">
           <div class="zl-col-door-outer">
             <div class="zl-col-title">大門最外欄</div>
             <div class="zl-table-card door-card-h empty-table">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">4人桌-09</span>
-                <span class="zl-soup-tag">彈性備用</span>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-09</span><span class="pill pill-neutral pill-sm">彈性備用</span></div>
               <div class="seats-4p">
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
+                <div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div>
               </div>
             </div>
           </div>
@@ -1114,15 +588,9 @@
           <div class="zl-col-door-inner">
             <div class="zl-col-title">門口內側欄</div>
             <div class="zl-table-card door-card-h">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">4人桌-08</span>
-                <span class="zl-soup-tag">紅燒 / 清燉</span>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-08</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
               <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">盧芷筠</span></div>
-                <div class="zl-seat-cell"><span class="name">陳嘉敏</span></div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
+                <div class="zl-seat-cell"><span class="name">盧芷筠</span></div><div class="zl-seat-cell"><span class="name">陳嘉敏</span></div><div class="zl-seat-cell is-blank">(空位)</div><div class="zl-seat-cell is-blank">(空位)</div>
               </div>
             </div>
           </div>
@@ -1130,127 +598,72 @@
           <div class="zl-col-vertical">
             <div class="zl-col-title">中排縱列</div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-01</span><span class="zl-soup-tag">清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">余靜如</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">余靜如親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-01</span><span class="pill pill-warn pill-round pill-sm">清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">余靜如</span></div><div class="zl-seat-cell is-rel"><span class="name">余靜如親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-03</span><span class="zl-soup-tag">清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">陳蔡月英</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳蔡月英親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-03</span><span class="pill pill-warn pill-round pill-sm">清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">陳蔡月英</span></div><div class="zl-seat-cell is-rel"><span class="name">陳蔡月英親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-01</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">李彥潁</span></div>
-                <div class="zl-seat-cell"><span class="name">張嘉芳</span></div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-01</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">李彥潁</span></div><div class="zl-seat-cell"><span class="name">張嘉芳</span></div><div class="zl-seat-cell is-blank">(空位)</div><div class="zl-seat-cell is-blank">(空位)</div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-03</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">呂信宏</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="fee-pill">$299</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-03</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">呂信宏</span></div><div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">呂信宏親屬</span><span class="pill pill-danger pill-sm">$299</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-05</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">沈玟姍</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">沈玟姍親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell"><span class="name">葉玲</span></div>
-                <div class="zl-seat-cell"><span class="name">李春香</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-05</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">沈玟姍</span></div><div class="zl-seat-cell is-rel"><span class="name">沈玟姍親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell"><span class="name">葉玲</span></div><div class="zl-seat-cell"><span class="name">李春香</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-05</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">張志強</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">張志強親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-05</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">張志強</span></div><div class="zl-seat-cell is-rel"><span class="name">張志強親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-06</span><span class="zl-soup-tag">清燉 / 麻辣</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">林信宏</span></div>
-                <div class="zl-seat-cell"><span class="name">鄧氏金雪</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-06</span><span class="pill pill-warn pill-round pill-sm">清燉 / 麻辣</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">林信宏</span></div><div class="zl-seat-cell"><span class="name">鄧氏金雪</span></div></div>
             </div>
           </div>
 
           <div class="zl-col-vertical">
             <div class="zl-col-title">右排縱列</div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-02</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">鄭仁傑</span></div>
-                <div class="zl-seat-cell"><span class="name">李容菀</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-02</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">鄭仁傑</span></div><div class="zl-seat-cell"><span class="name">李容菀</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-04</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">徐淑貞</span></div>
-                <div class="zl-seat-cell"><span class="name">林雅婷</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-04</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">徐淑貞</span></div><div class="zl-seat-cell"><span class="name">林雅婷</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-02</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">邱俊霖</span></div>
-                <div class="zl-seat-cell"><span class="name">廖家偉</span></div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-02</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">邱俊霖</span></div><div class="zl-seat-cell"><span class="name">廖家偉</span></div><div class="zl-seat-cell is-blank">(空位)</div><div class="zl-seat-cell is-blank">(空位)</div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-04</span><span class="zl-soup-tag">紅燒</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">陳惠君</span></div>
-                <div class="zl-seat-cell"><span class="name">張晉維</span></div>
-                <div class="zl-seat-cell"><span class="name">何杰龍</span></div>
-                <div class="zl-seat-cell"><span class="name">邱栯菘</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-04</span><span class="pill pill-warn pill-round pill-sm">紅燒</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">陳惠君</span></div><div class="zl-seat-cell"><span class="name">張晉維</span></div><div class="zl-seat-cell"><span class="name">何杰龍</span></div><div class="zl-seat-cell"><span class="name">邱栯菘</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-06</span><span class="zl-soup-tag">紅燒</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">梁雅娟</span></div>
-                <div class="zl-seat-cell"><span class="name">李建忠</span></div>
-                <div class="zl-seat-cell"><span class="name">劉珊廷</span></div>
-                <div class="zl-seat-cell"><span class="name">徐逸軒</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-06</span><span class="pill pill-warn pill-round pill-sm">紅燒</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">梁雅娟</span></div><div class="zl-seat-cell"><span class="name">李建忠</span></div><div class="zl-seat-cell"><span class="name">劉珊廷</span></div><div class="zl-seat-cell"><span class="name">徐逸軒</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-07</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">黃凱鳳</span></div>
-                <div class="zl-seat-cell"><span class="name">朱昱禎</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">黃凱鳳親屬</span><span class="fee-pill">$129</span></div>
-                <div class="zl-seat-cell is-blank">(空位)</div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-07</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">黃凱鳳</span></div><div class="zl-seat-cell"><span class="name">朱昱禎</span></div><div class="zl-seat-cell is-rel"><span class="name">黃凱鳳親屬</span><span class="pill pill-danger pill-sm">$129</span></div><div class="zl-seat-cell is-blank">(空位)</div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-07</span><span class="zl-soup-tag">紅燒 / 麻辣</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">陳昱仁</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳昱仁親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-07</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 麻辣</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">陳昱仁</span></div><div class="zl-seat-cell is-rel"><span class="name">陳昱仁親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
           </div>
         </div>
 
-        <div class="zl-legend">
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
+        <div class="common-legend" style="justify-content: flex-end; margin-top: 12px;">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
+          <div><span class="pill pill-warn pill-round pill-sm">湯底</span></div>
         </div>
       </div>
     </div>
@@ -1258,34 +671,24 @@
 
   <!-- ==================== 分頁 3：正老林 梯次二 (11/27) ==================== -->
   <section class="tab-view" id="tab-zl-1127">
-    <div class="zl-sheet-card">
-      <div class="zl-sheet-header">
-        <div class="zl-sheet-title">正老林羊肉爐：11/27 (五) 現場座位圖</div>
-        <div class="zl-sheet-legend-top">
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
+    <div class="common-card">
+      <div class="common-header">
+        <div class="common-title">正老林羊肉爐：11/27 (五) 現場座位圖</div>
+        <div class="common-legend">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
         </div>
       </div>
 
       <div class="zl-floor-stage">
-        <div class="zl-entrance-box">
-          <span class="zl-entrance-arrow">←</span>
-          <span>【大門入口】</span>
-        </div>
-
+        <div class="zl-entrance-box"><span>← 【大門入口】</span></div>
         <div class="zl-floor-grid">
           <div class="zl-col-door-outer">
             <div class="zl-col-title">大門最外欄</div>
             <div class="zl-table-card door-card-h empty-table">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">4人桌-09</span>
-                <span class="zl-soup-tag">彈性備用</span>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-09</span><span class="pill pill-neutral pill-sm">彈性備用</span></div>
               <div class="seats-4p">
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
+                <div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div>
               </div>
             </div>
           </div>
@@ -1293,15 +696,9 @@
           <div class="zl-col-door-inner">
             <div class="zl-col-title">門口內側欄</div>
             <div class="zl-table-card door-card-h empty-table">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">4人桌-08</span>
-                <span class="zl-soup-tag">彈性備用</span>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-08</span><span class="pill pill-neutral pill-sm">彈性備用</span></div>
               <div class="seats-4p">
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
+                <div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div>
               </div>
             </div>
           </div>
@@ -1309,134 +706,72 @@
           <div class="zl-col-vertical">
             <div class="zl-col-title">中排縱列</div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-01</span><span class="zl-soup-tag">紅燒 / 麻辣</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">陳昱潔</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳昱潔親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-01</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 麻辣</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">陳昱潔</span></div><div class="zl-seat-cell is-rel"><span class="name">陳昱潔親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-03</span><span class="zl-soup-tag">清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">黃琴亮</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">黃琴亮親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-03</span><span class="pill pill-warn pill-round pill-sm">清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">黃琴亮</span></div><div class="zl-seat-cell is-rel"><span class="name">黃琴亮親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-01</span><span class="zl-soup-tag">清燉 / 麻辣</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">劉運弦</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell"><span class="name">賴明秀</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-01</span><span class="pill pill-warn pill-round pill-sm">清燉 / 麻辣</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">劉運弦</span></div><div class="zl-seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell"><span class="name">賴明秀</span></div><div class="zl-seat-cell is-rel"><span class="name">劉運弦親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-03</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">賴慧芳</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-03</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">賴慧芳</span></div><div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">賴慧芳親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-05</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">黃炳菖</span></div>
-                <div class="zl-seat-cell"><span class="name">陳任瑋</span></div>
-                <div class="zl-seat-cell"><span class="name">林琮輝</span></div>
-                <div class="zl-seat-cell"><span class="name">林家儀</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-05</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">黃炳菖</span></div><div class="zl-seat-cell"><span class="name">陳任瑋</span></div><div class="zl-seat-cell"><span class="name">林琮輝</span></div><div class="zl-seat-cell"><span class="name">林家儀</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-05</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">陳坤穎</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳坤穎親屬</span><span class="fee-pill">$599</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-05</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">陳坤穎</span></div><div class="zl-seat-cell is-rel"><span class="name">陳坤穎親屬</span><span class="pill pill-danger pill-sm">$599</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-06</span><span class="zl-soup-tag">清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">林惠琴</span></div>
-                <div class="zl-seat-cell"><span class="name">陳玉瓶</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-06</span><span class="pill pill-warn pill-round pill-sm">清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">林惠琴</span></div><div class="zl-seat-cell"><span class="name">陳玉瓶</span></div></div>
             </div>
           </div>
 
           <div class="zl-col-vertical">
             <div class="zl-col-title">右排縱列</div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-02</span><span class="zl-soup-tag">清燉 / 麻辣</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">黃俊維</span></div>
-                <div class="zl-seat-cell"><span class="name">張瑞家</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-02</span><span class="pill pill-warn pill-round pill-sm">清燉 / 麻辣</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">黃俊維</span></div><div class="zl-seat-cell"><span class="name">張瑞家</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">2人桌-04</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell"><span class="name">葉政洋</span></div>
-                <div class="zl-seat-cell"><span class="name">杜冠儒</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-04</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell"><span class="name">葉政洋</span></div><div class="zl-seat-cell"><span class="name">杜冠儒</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-02</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">張志璁</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">張志璁親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">張志璁親屬</span><span class="free-pill">不收費</span></div>
-                <div class="zl-seat-cell"><span class="name">陳迺壹</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-02</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">張志璁</span></div><div class="zl-seat-cell is-rel"><span class="name">張志璁親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">張志璁親屬</span><span class="pill pill-success pill-sm">不收費</span></div><div class="zl-seat-cell"><span class="name">陳迺壹</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-04</span><span class="zl-soup-tag">紅燒 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">陳詩敏</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="fee-pill">$129</span></div>
-                <div class="zl-seat-cell"><span class="name">陳瑾</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-04</span><span class="pill pill-warn pill-round pill-sm">紅燒 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">陳詩敏</span></div><div class="zl-seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell is-rel"><span class="name">陳詩敏親屬</span><span class="pill pill-danger pill-sm">$129</span></div><div class="zl-seat-cell"><span class="name">陳瑾</span></div></div>
             </div>
             <div class="zl-table-card">
-              <div class="zl-table-meta"><span class="zl-table-id">4人桌-06</span><span class="zl-soup-tag">麻辣 / 清燉</span></div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell"><span class="name">游啟瑞</span></div>
-                <div class="zl-seat-cell"><span class="name">吳淑霞</span></div>
-                <div class="zl-seat-cell is-rel"><span class="name">吳淑霞親屬</span><span class="fee-pill">$599</span></div>
-                <div class="zl-seat-cell"><span class="name">黃松献</span></div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-06</span><span class="pill pill-warn pill-round pill-sm">麻辣 / 清燉</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell"><span class="name">游啟瑞</span></div><div class="zl-seat-cell"><span class="name">吳淑霞</span></div><div class="zl-seat-cell is-rel"><span class="name">吳淑霞親屬</span><span class="pill pill-danger pill-sm">$599</span></div><div class="zl-seat-cell"><span class="name">黃松献</span></div></div>
             </div>
             <div class="zl-table-card empty-table">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">4人桌-07</span>
-                <span class="zl-soup-tag">彈性備用</span>
-              </div>
-              <div class="seats-4p">
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">4人桌-07</span><span class="pill pill-neutral pill-sm">彈性備用</span></div>
+              <div class="seats-4p"><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div></div>
             </div>
             <div class="zl-table-card empty-table">
-              <div class="zl-table-meta">
-                <span class="zl-table-id">2人桌-07</span>
-                <span class="zl-soup-tag">彈性備用</span>
-              </div>
-              <div class="seats-2p">
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-                <div class="zl-seat-cell is-blank">(未排定)</div>
-              </div>
+              <div class="zl-table-meta"><span class="zl-table-id">2人桌-07</span><span class="pill pill-neutral pill-sm">彈性備用</span></div>
+              <div class="seats-2p"><div class="zl-seat-cell is-blank">(未排定)</div><div class="zl-seat-cell is-blank">(未排定)</div></div>
             </div>
           </div>
         </div>
 
-        <div class="zl-legend">
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#1e293b;"></span>同仁</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#0369a1;"></span>親屬</div>
-          <div class="zl-legend-item"><span class="zl-dot" style="background:#fff7ed; border:1px solid #fdba74;"></span>湯底</div>
+        <div class="common-legend" style="justify-content: flex-end; margin-top: 12px;">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
+          <div><span class="pill pill-warn pill-round pill-sm">湯底</span></div>
         </div>
       </div>
     </div>
@@ -1444,16 +779,15 @@
 
   <!-- ==================== 分頁 4：霸味 梯次一 (11/20) ==================== -->
   <section class="tab-view" id="tab-bw-1120">
-    <div class="bw-sheet-card">
-      <div class="bw-sheet-header">
-        <div class="bw-sheet-title">霸味薑母鴨：11/20 (五) 加點明細</div>
-        <div class="bw-sheet-legend">
-          <div><span class="zl-dot" style="background:#1e293b; display:inline-block; margin-right:4px;"></span>同仁</div>
-          <div><span class="zl-dot" style="background:#0369a1; display:inline-block; margin-right:4px;"></span>親屬</div>
+    <div class="common-card">
+      <div class="common-header">
+        <div class="common-title">霸味薑母鴨：11/20 (五) 加點明細</div>
+        <div class="common-legend">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
         </div>
       </div>
 
-      <!-- 提示框 -->
       <div class="bw-notice-box">
         <span>請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
@@ -1469,398 +803,151 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="table-group-header">
-              <td colspan="3" class="group-title-cell">4人桌-01（4人）</td>
-              <td class="group-remark-cell"><span class="remark-tag">希望排在張純華桌旁邊</span></td>
-            </tr>
+            <tr class="table-group-header"><td colspan="3" class="group-title-cell">4人桌-01（4人）</td><td class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">希望排在張純華桌旁邊</span></td></tr>
             <tr>
               <td class="bw-name-cell">呂惠珠</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">姬路魚豆腐(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$330</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">姬路魚豆腐(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span><span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$330</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">陳郁心</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">爆漿起司球(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$350</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">爆漿起司球(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$350</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">陳怡妏</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">招牌烏龍麵<span class="item-price">$50</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$220</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $132 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span><span class="item-chip">招牌烏龍麵<span class="item-price">$50</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$220</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $132 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">陳怡妏親屬</td>
+              <td class="bw-name-cell is-rel">陳怡妏親屬</td>
               <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $247 － 員工餘額 $132 ＝ <span class="badge-pay pay-need">自付 $115</span></td>
+              <td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247 － 員工餘額 $132 ＝ <span class="pill pill-danger">自付 $115</span></td>
             </tr>
 
-            <tr class="table-group-header">
-              <td colspan="4" class="group-title-cell">4人桌-02（4人）</td>
-            </tr>
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">4人桌-02（4人）</td></tr>
             <tr>
               <td class="bw-name-cell">阮薇祥藍</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$330</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $22 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×2</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$330</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $22 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">阮薇祥藍親屬</td>
+              <td class="bw-name-cell is-rel">阮薇祥藍親屬</td>
               <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $247 － 員工餘額 $22 ＝ <span class="badge-pay pay-need">自付 $225</span></td>
+              <td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247 － 員工餘額 $22 ＝ <span class="pill pill-danger">自付 $225</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張麗慧</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$290</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $62 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$290</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $62 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">張麗慧親屬</td>
+              <td class="bw-name-cell is-rel">張麗慧親屬</td>
               <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $247 － 員工餘額 $62 ＝ <span class="badge-pay pay-need">自付 $185</span></td>
+              <td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247 － 員工餘額 $62 ＝ <span class="pill pill-danger">自付 $185</span></td>
             </tr>
 
-            <tr class="table-group-header">
-              <td colspan="4" class="group-title-cell">6人桌-01（6人）</td>
-            </tr>
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">6人桌-01（6人）</td></tr>
             <tr>
               <td class="bw-name-cell">邱佳瑩</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">腸<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×3</span></span>
-                  <span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鈴鈴捲<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span>
-                  <span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">月見烏龍麵<span class="item-price">$60</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$1,410</td>
-              <td class="calc-cell">全桌額度合算加點 ＝ <span class="badge-pay pay-zero">自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">腸<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×2</span></span><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×3</span></span><span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴捲<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×2</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span><span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span><span class="item-chip">月見烏龍麵<span class="item-price">$60</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$1,410</td><td class="calc-cell">全桌額度合算加點 ＝ <span class="pill pill-success">自付 $0</span></td>
             </tr>
-            <tr>
-              <td class="bw-name-cell">黃資惠</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">自付 $0</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">黃資惠親屬 1</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">自付 $0</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">黃資惠親屬 2</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">自付 $0</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell">林芸竹</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">自付 $0</span></td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell">蔡昀軒</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">自付 $0</span></td>
-            </tr>
+            <tr><td class="bw-name-cell">黃資惠</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell"><span class="pill pill-success">自付 $0</span></td></tr>
+            <tr><td class="bw-name-cell is-rel">黃資惠親屬 1</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell"><span class="pill pill-success">自付 $0</span></td></tr>
+            <tr><td class="bw-name-cell is-rel">黃資惠親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell"><span class="pill pill-success">自付 $0</span></td></tr>
+            <tr><td class="bw-name-cell">林芸竹</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell"><span class="pill pill-success">自付 $0</span></td></tr>
+            <tr><td class="bw-name-cell">蔡昀軒</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell"><span class="pill pill-success">自付 $0</span></td></tr>
 
-            <tr class="table-group-header">
-              <td colspan="4" class="group-title-cell">6人桌-02（6人）</td>
-            </tr>
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">6人桌-02（6人）</td></tr>
             <tr>
               <td class="bw-name-cell">宋美艾</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$440</td>
-              <td class="calc-cell">超額 $5 ＝ <span class="badge-pay pay-need">自付 $5</span></td>
+              <td><div class="items-container"><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$440</td><td class="calc-cell">超額 $5 ＝ <span class="pill pill-danger">自付 $5</span></td>
             </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">宋美艾親屬</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 ＝ <span class="badge-pay pay-need">自付 $165</span></td>
+            <tr><td class="bw-name-cell is-rel">宋美艾親屬</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 ＝ <span class="pill pill-danger">自付 $165</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">賴婷瑀</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">茭白筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$420</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">茭白筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$420</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">蔡文豪</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$440</td>
-              <td class="calc-cell">超額 $5 ＝ <span class="badge-pay pay-need">自付 $5</span></td>
+              <td><div class="items-container"><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×2</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$440</td><td class="calc-cell">超額 $5 ＝ <span class="pill pill-danger">自付 $5</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">廖家翎</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$410</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$410</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">蕭梅君</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$420</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×2</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">香菇<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$420</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
 
-            <tr class="table-group-header">
-              <td colspan="4" class="group-title-cell">6人桌-03（6人）</td>
-            </tr>
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">6人桌-03（6人）</td></tr>
             <tr>
               <td class="bw-name-cell">廖俞蕙</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">櫛瓜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$430</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">櫛瓜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$430</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">周欣瑩</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">茭白筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$440</td>
-              <td class="calc-cell">超額 $5 ＝ <span class="badge-pay pay-need">自付 $5</span></td>
+              <td><div class="items-container"><span class="item-chip">茭白筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$440</td><td class="calc-cell">超額 $5 ＝ <span class="pill pill-danger">自付 $5</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張宛庭</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$410</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$410</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">陳芊妤</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">雞佛2份<span class="item-price">$450</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$450</td>
-              <td class="calc-cell">超額 $15 ＝ <span class="badge-pay pay-need">自付 $15</span></td>
+              <td><div class="items-container"><span class="item-chip">雞佛2份<span class="item-price">$450</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$450</td><td class="calc-cell">超額 $15 ＝ <span class="pill pill-danger">自付 $15</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">謝宜玲</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">肝<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">爆漿起司球(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">小竹輪<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">月見豬油拌飯<span class="item-price">$50</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$430</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">肝<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">爆漿起司球(8枚)<span class="item-price">$80</span><span class="item-qty">×1</span></span><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">韓式魚板<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">小竹輪<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span><span class="item-chip">月見豬油拌飯<span class="item-price">$50</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$430</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張淳雅</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">招牌烏龍麵<span class="item-price">$50</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$450</td>
-              <td class="calc-cell">超額 $15 ＝ <span class="badge-pay pay-need">自付 $15</span></td>
+              <td><div class="items-container"><span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span><span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span><span class="item-chip">招牌烏龍麵<span class="item-price">$50</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$450</td><td class="calc-cell">超額 $15 ＝ <span class="pill pill-danger">自付 $15</span></td>
             </tr>
 
             <tr class="table-group-header">
               <td colspan="2" class="group-title-cell">6人桌-04（5人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="remark-tag">因少一人，員工額度調整 $402 (每人$600 - 套餐$990/實際人數5人)</span></td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $402 (每人$600 - 套餐$990/實際人數5人)</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張純華</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$330</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">袖珍菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$330</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">何儀萱</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">腸<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">心<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$330</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">腸<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">心<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$330</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">王芸萍</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$330</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $72 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$330</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $72 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">王芸萍親屬</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$190</td>
-              <td class="calc-cell">基本套餐費 $198 ＋ 加點 $190 － 員工餘額 $72 ＝ <span class="badge-pay pay-need">自付 $316</span></td>
+              <td class="bw-name-cell is-rel">王芸萍親屬</td>
+              <td><div class="items-container"><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
+              <td class="amount-cell">$190</td><td class="calc-cell">基本套餐費 $198 ＋ 加點 $190 － 員工餘額 $72 ＝ <span class="pill pill-danger">自付 $316</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">吳宗祐</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">心<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$340</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">心<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$340</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
           </tbody>
         </table>
@@ -1870,16 +957,15 @@
 
   <!-- ==================== 分頁 5：霸味 梯次二 (11/27) ==================== -->
   <section class="tab-view" id="tab-bw-1127">
-    <div class="bw-sheet-card">
-      <div class="bw-sheet-header">
-        <div class="bw-sheet-title">霸味薑母鴨：11/27 (五) 加點明細</div>
-        <div class="bw-sheet-legend">
-          <div><span class="zl-dot" style="background:#1e293b; display:inline-block; margin-right:4px;"></span>同仁</div>
-          <div><span class="zl-dot" style="background:#0369a1; display:inline-block; margin-right:4px;"></span>親屬</div>
+    <div class="common-card">
+      <div class="common-header">
+        <div class="common-title">霸味薑母鴨：11/27 (五) 加點明細</div>
+        <div class="common-legend">
+          <div><span class="status-dot" style="background:#1e293b;"></span>同仁</div>
+          <div><span class="status-dot" style="background:var(--color-relative);"></span>親屬</div>
         </div>
       </div>
 
-      <!-- 提示框 -->
       <div class="bw-notice-box">
         <span>請向現場服務人員告知桌次，店家將協助引導至指定座位。</span>
       </div>
@@ -1895,278 +981,126 @@
             </tr>
           </thead>
           <tbody>
-            <tr class="table-group-header">
-              <td colspan="3" class="group-title-cell">6人桌-01（6人）</td>
-              <td class="group-remark-cell"><span class="remark-tag">需兒童椅 × 1</span></td>
-            </tr>
+            <tr class="table-group-header"><td colspan="3" class="group-title-cell">6人桌-01（6人）</td><td class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">需兒童椅 × 1</span></td></tr>
             <tr>
               <td class="bw-name-cell">林欣潔</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$430</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">奶油白菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$430</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張淨琇</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">櫛瓜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$380</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">櫛瓜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$380</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張勝岳</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$440</td>
-              <td class="calc-cell">超額 $5 ＝ <span class="badge-pay pay-need">自付 $5</span></td>
+              <td><div class="items-container"><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">水蓮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">玉米筍<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">杏鮑菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">白精靈菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$440</td><td class="calc-cell">超額 $5 ＝ <span class="pill pill-danger">自付 $5</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">黃伯誼</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×3</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×3</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$430</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×3</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×3</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$430</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張于涓</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$430</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span><span class="item-chip">甜玉米<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$430</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">沈世雄</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$400</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">米血糕<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$400</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
 
-            <!-- 調整順序：6人桌-02（5人）移至 6人桌-01 下方 -->
             <tr class="table-group-header">
               <td colspan="2" class="group-title-cell">6人桌-02（5人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="remark-tag">因少一人，員工額度調整 $402 (每人$600 - 套餐$990/實際人數5人)</span></td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $402 (每人$600 - 套餐$990/實際人數5人)</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">沈佩樺</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$410</td>
-              <td class="calc-cell">超額 $8 ＝ <span class="badge-pay pay-need">自付 $8</span></td>
+              <td><div class="items-container"><span class="item-chip">金針菇<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">櫻桃鴨腿肉片<span class="item-price">$180</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鮮豆皮<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$410</td><td class="calc-cell">超額 $8 ＝ <span class="pill pill-danger">自付 $8</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">送勝志</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$400</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">國產雞胸肉片<span class="item-price">$120</span><span class="item-qty">×1</span></span><span class="item-chip">茼蒿<span class="item-price">$70</span><span class="item-qty">×2</span></span><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$400</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">汪柏杉</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$140</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">高麗菜<span class="item-price">$70</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$140</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">謝勝宇</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×2</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">月見烏龍麵<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$220</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span></td>
+              <td><div class="items-container"><span class="item-chip">凍豆腐<span class="item-price">$60</span><span class="item-qty">×2</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span><span class="item-chip">月見烏龍麵<span class="item-price">$60</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$220</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">沈佩樺親屬</td>
+              <td class="bw-name-cell is-rel">沈佩樺親屬</td>
               <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 ＝ <span class="badge-pay pay-need">自付 $198</span></td>
+              <td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 ＝ <span class="pill pill-danger">自付 $198</span></td>
             </tr>
 
             <tr class="table-group-header">
               <td colspan="2" class="group-title-cell">4人桌-01（3人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="remark-tag">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">陳湘琦</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$220</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $270 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">霸味小丸子<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">霸味鈴鈴卷<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×2</span></span></div></td>
+              <td class="amount-cell">$220</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $270 可扣抵親屬）</span></td>
             </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">陳湘琦親屬 1</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $330</td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">陳湘琦親屬 2</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $330</td>
-            </tr>
+            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 1</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
+            <tr><td class="bw-name-cell is-rel">陳湘琦親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $330</td></tr>
             <tr class="subtotal-row">
               <td colspan="4" style="text-align: right;">
-                <span style="color: #475569; font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>
-                眷屬應付 $660 － 員工額度 $270 ＝ <strong style="color:var(--pill-pay-txt); font-size:14px;">自付 $390</strong>
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $660 － 員工額度 $270 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $390</strong>
               </td>
             </tr>
 
             <tr class="table-group-header">
               <td colspan="2" class="group-title-cell">4人桌-02（3人）</td>
-              <td colspan="2" class="group-remark-cell"><span class="remark-tag">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
+              <td colspan="2" class="group-remark-cell"><span class="pill pill-warn pill-round pill-sm">因少一人，員工額度調整 $270 (每人$600 - 套餐$990/實際人數3人)</span></td>
             </tr>
             <tr>
               <td class="bw-name-cell">張俊銘</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$100</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $170 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">傳統豆皮<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$100</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $170 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">張俊銘親屬 1</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$40</td>
-              <td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
+              <td class="bw-name-cell is-rel">張俊銘親屬 1</td>
+              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">張俊銘親屬 2</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$40</td>
-              <td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
+              <td class="bw-name-cell is-rel">張俊銘親屬 2</td>
+              <td><div class="items-container"><span class="item-chip">招牌豬油拌飯<span class="item-price">$40</span><span class="item-qty">×1</span></span></div></td>
+              <td class="amount-cell">$40</td><td class="calc-cell">基本套餐費 $330 ＋ 加點 $40 ＝ 應付 $370</td>
             </tr>
             <tr class="subtotal-row">
               <td colspan="4" style="text-align: right;">
-                <span style="color: #475569; font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>
-                眷屬應付 $740 － 員工餘額 $170 ＝ <strong style="color:var(--pill-pay-txt); font-size:14px;">自付 $570</strong>
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $740 － 員工餘額 $170 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $570</strong>
               </td>
             </tr>
 
-            <tr class="table-group-header">
-              <td colspan="4" class="group-title-cell">4人桌-03（4人）</td>
-            </tr>
+            <tr class="table-group-header"><td colspan="4" class="group-title-cell">4人桌-03（4人）</td></tr>
             <tr>
               <td class="bw-name-cell">林怡君</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span>
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$250</td>
-              <td class="calc-cell"><span class="badge-pay pay-zero">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $102 可扣抵親屬）</span></td>
+              <td><div class="items-container"><span class="item-chip">純鴨血<span class="item-price">$60</span><span class="item-qty">×1</span></span><span class="item-chip">鳥蛋<span class="item-price">$70</span><span class="item-qty">×1</span></span><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
+              <td class="amount-cell">$250</td><td class="calc-cell"><span class="pill pill-success">未超額，自付 $0</span><span class="calc-subnote">（額度剩 $102 可扣抵親屬）</span></td>
             </tr>
             <tr>
-              <td class="bw-name-cell bw-relative-name">林怡君親屬 1</td>
-              <td>
-                <div class="items-container">
-                  <span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span>
-                </div>
-              </td>
-              <td class="amount-cell">$120</td>
-              <td class="calc-cell">基本套餐費 $247 ＋ 加點 $120 ＝ 應付 $367</td>
+              <td class="bw-name-cell is-rel">林怡君親屬 1</td>
+              <td><div class="items-container"><span class="item-chip">麻油麵線<span class="item-price">$40</span><span class="item-qty">×3</span></span></div></td>
+              <td class="amount-cell">$120</td><td class="calc-cell">基本套餐費 $247 ＋ 加點 $120 ＝ 應付 $367</td>
             </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">林怡君親屬 2</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $247</td>
-            </tr>
-            <tr>
-              <td class="bw-name-cell bw-relative-name">林怡君親屬 3</td>
-              <td><span class="items-empty">(無加點)</span></td>
-              <td class="amount-cell">$0</td>
-              <td class="calc-cell">基本套餐費 $247</td>
-            </tr>
+            <tr><td class="bw-name-cell is-rel">林怡君親屬 2</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
+            <tr><td class="bw-name-cell is-rel">林怡君親屬 3</td><td><span class="items-empty">(無加點)</span></td><td class="amount-cell">$0</td><td class="calc-cell">基本套餐費 $247</td></tr>
             <tr class="subtotal-row">
               <td colspan="4" style="text-align: right;">
-                <span style="color: #475569; font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>
-                眷屬應付 $861 － 員工餘額 $102 ＝ <strong style="color:var(--pill-pay-txt); font-size:14px;">自付 $759</strong>
+                <span style="color: var(--color-sub); font-weight: 700; margin-right: 8px;">眷屬合併結算：</span>眷屬應付 $861 － 員工餘額 $102 ＝ <strong style="color:var(--pill-danger-txt); font-size:14px;">自付 $759</strong>
               </td>
             </tr>
           </tbody>
@@ -2175,132 +1109,131 @@
     </div>
   </section>
 
-  <!-- 多筆搜尋與跨頁循環跳轉腳本 -->
+  <!-- 腳本區：川玥座位黑點座標生成 + 搜尋跳轉 -->
   <script>
+    const seatH = [
+      [118.5, 23], [118.5, 162], [309.3, 23], [382.7, 23], [309.3, 217], [382.7, 217],
+      [564.3, 23], [637.7, 23], [564.3, 217], [637.7, 217], [828.5, 23], [828.5, 162],
+      [1016, 23], [1086, 23], [1156, 23], [1016, 217], [1086, 217], [1156, 217],
+      [1343.5, 23], [1343.5, 162], [1543.5, 23], [1543.5, 162], [1734.3, 23], [1807.7, 23],
+      [1734.3, 217], [1807.7, 217], [1998.5, 23], [1998.5, 162], [119.3, 648], [192.7, 648],
+      [119.3, 842], [192.7, 842], [371, 648], [441, 648], [511, 648], [371, 842],
+      [441, 842], [511, 842], [2034, 648], [2102, 648], [2170, 648], [2238, 648],
+      [2034, 852], [2102, 852], [2170, 852], [2238, 852], [119.3, 898], [192.7, 898],
+      [119.3, 1092], [192.7, 1092], [371, 898], [441, 898], [511, 898], [371, 1092],
+      [441, 1092], [511, 1092], [2034, 898], [2102, 898], [2170, 898], [2238, 898],
+      [2034, 1102], [2102, 1102], [2170, 1102], [2238, 1102], [2034, 1148], [2102, 1148],
+      [2170, 1148], [2238, 1148], [2034, 1352], [2102, 1352], [2170, 1352], [2238, 1352],
+      [368.5, 1428], [368.5, 1567], [574.3, 1398], [647.7, 1398], [574.3, 1592], [647.7, 1592],
+      [844.3, 1398], [917.7, 1398], [844.3, 1592], [917.7, 1592], [1111, 1398], [1181, 1398],
+      [1251, 1398], [1111, 1592], [1181, 1592], [1251, 1592], [1444.3, 1398], [1517.7, 1398],
+      [1444.3, 1592], [1517.7, 1592]
+    ];
+    const seatV = [
+      [648, 297], [648, 357], [882, 297], [882, 357], [993, 297], [993, 357],
+      [1227, 297], [1227, 357], [1338, 297], [1338, 357], [1572, 297], [1572, 357],
+      [1653, 282], [1653, 327], [1653, 372], [1947, 282], [1947, 327], [1947, 372],
+      [1998, 282], [1998, 327], [1998, 372], [2292, 282], [2292, 327], [2292, 372],
+      [618, 502], [618, 547], [618, 592], [912, 502], [912, 547], [912, 592],
+      [963, 502], [963, 547], [963, 592], [1257, 502], [1257, 547], [1257, 592],
+      [1308, 502], [1308, 547], [1308, 592], [1602, 502], [1602, 547], [1602, 592],
+      [1653, 502], [1653, 547], [1653, 592], [1947, 502], [1947, 547], [1947, 592],
+      [1998, 502], [1998, 547], [1998, 592], [2292, 502], [2292, 547], [2292, 592],
+      [648, 707], [648, 767], [882, 707], [882, 767], [993, 707], [993, 767],
+      [1227, 707], [1227, 767], [1338, 707], [1338, 767], [1572, 707], [1572, 767],
+      [1683, 707], [1683, 767], [1917, 707], [1917, 767], [648, 1207], [648, 1267],
+      [882, 1207], [882, 1267], [993, 1207], [993, 1267], [1227, 1207], [1227, 1267],
+      [1338, 1207], [1338, 1267], [1572, 1207], [1572, 1267], [1683, 1207], [1683, 1267],
+      [1917, 1207], [1917, 1267]
+    ];
+
+    const cyFloor = document.getElementById('cyFloor');
+    const frag = document.createDocumentFragment();
+    seatH.forEach(([l, t]) => {
+      const d = document.createElement('div');
+      d.className = 'seat-mark seat-h';
+      d.style.left = `${l}px`; d.style.top = `${t}px`;
+      frag.appendChild(d);
+    });
+    seatV.forEach(([l, t]) => {
+      const d = document.createElement('div');
+      d.className = 'seat-mark seat-v';
+      d.style.left = `${l}px`; d.style.top = `${t}px`;
+      frag.appendChild(d);
+    });
+    cyFloor.appendChild(frag);
+
+    // 分頁切換
+    function switchMainTab(targetId, shouldScroll = true) {
+      document.querySelectorAll('.tab-view').forEach(v => v.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      const tView = document.getElementById(targetId);
+      if (tView) tView.classList.add('active');
+      const tBtn = document.querySelector(`.tab-btn[data-tab="${targetId}"]`);
+      if (tBtn) tBtn.classList.add('active');
+      if (shouldScroll) window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.getElementById('tabGroup').addEventListener('click', e => {
+      const btn = e.target.closest('.tab-btn');
+      if (btn) switchMainTab(btn.dataset.tab);
+    });
+
+    // 搜尋與循環導覽
     let currentSearchResults = [];
     let currentSearchIndex = -1;
 
-    function switchMainTab(targetId, shouldScroll = true) {
-      document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
-      const targetView = document.getElementById(targetId);
-      if (targetView) targetView.classList.add('active');
-
-      const clickedBtn = Array.from(document.querySelectorAll('.tab-btn')).find(btn => 
-        btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(targetId)
-      );
-      if (clickedBtn) clickedBtn.classList.add('active');
-
-      if (shouldScroll) {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      }
-    }
-
     function clearSearchEffects() {
-      document.querySelectorAll('.search-highlight-all').forEach(el => el.classList.remove('search-highlight-all'));
-      document.querySelectorAll('.search-highlight-active').forEach(el => el.classList.remove('search-highlight-active'));
-      document.querySelectorAll('.search-table-target').forEach(el => el.classList.remove('search-table-target'));
-    }
-
-    function handleSearchKey(event) {
-      if (event.key === 'Enter') {
-        event.preventDefault();
-        cycleMatch(event.shiftKey ? -1 : 1);
-      }
+      document.querySelectorAll('.search-highlight-all, .search-highlight-active, .search-table-target')
+        .forEach(el => el.classList.remove('search-highlight-all', 'search-highlight-active', 'search-table-target'));
     }
 
     function initiateSearch(query) {
       clearSearchEffects();
       currentSearchResults = [];
       currentSearchIndex = -1;
-
       const counterEl = document.getElementById('searchCounter');
       const q = query.trim().toLowerCase();
+      if (!q) { counterEl.style.display = 'none'; return; }
 
-      if (!q) {
-        counterEl.style.display = 'none';
-        return;
-      }
+      const targetEls = document.querySelectorAll(
+        '.cy-member-item .cy-m-name, .zl-seat-cell .name, tbody tr:not(.table-group-header):not(.subtotal-row) .bw-name-cell'
+      );
 
-      const tabs = ['tab-cy', 'tab-zl-1120', 'tab-zl-1127', 'tab-bw-1120', 'tab-bw-1127'];
-
-      tabs.forEach(tabId => {
-        const view = document.getElementById(tabId);
-        if (!view) return;
-
-        // 川玥
-        view.querySelectorAll('.cy-member-item').forEach(item => {
-          const nameEl = item.querySelector('.cy-m-name');
-          if (nameEl && nameEl.textContent.toLowerCase().includes(q)) {
-            currentSearchResults.push({
-              element: item,
-              table: item.closest('.cy-table'),
-              tabId: tabId
-            });
-            item.classList.add('search-highlight-all');
+      targetEls.forEach(nameEl => {
+        if (nameEl.textContent.toLowerCase().includes(q)) {
+          const itemEl = nameEl.closest('.cy-member-item, .zl-seat-cell, tr');
+          const tableEl = nameEl.closest('.cy-table, .zl-table-card, tr');
+          const tabView = nameEl.closest('.tab-view');
+          if (itemEl && tabView) {
+            currentSearchResults.push({ element: itemEl, table: tableEl, tabId: tabView.id });
+            itemEl.classList.add('search-highlight-all');
           }
-        });
-
-        // 正老林
-        view.querySelectorAll('.zl-seat-cell').forEach(cell => {
-          const nameEl = cell.querySelector('.name');
-          if (nameEl && nameEl.textContent.toLowerCase().includes(q)) {
-            currentSearchResults.push({
-              element: cell,
-              table: cell.closest('.zl-table-card'),
-              tabId: tabId
-            });
-            cell.classList.add('search-highlight-all');
-          }
-        });
-
-        // 霸味
-        view.querySelectorAll('tbody tr:not(.table-group-header):not(.subtotal-row)').forEach(row => {
-          const nameCell = row.querySelector('.bw-name-cell');
-          if (nameCell && nameCell.textContent.toLowerCase().includes(q)) {
-            currentSearchResults.push({
-              element: row,
-              table: row,
-              tabId: tabId
-            });
-            row.classList.add('search-highlight-all');
-          }
-        });
+        }
       });
 
+      counterEl.style.display = 'inline';
       if (currentSearchResults.length > 0) {
-        counterEl.style.display = 'inline';
         currentSearchIndex = 0;
         focusCurrentMatch();
       } else {
-        counterEl.style.display = 'inline';
         counterEl.textContent = '0/0';
       }
     }
 
     function cycleMatch(direction) {
       if (currentSearchResults.length === 0) return;
-
-      currentSearchIndex += direction;
-      if (currentSearchIndex >= currentSearchResults.length) {
-        currentSearchIndex = 0;
-      } else if (currentSearchIndex < 0) {
-        currentSearchIndex = currentSearchResults.length - 1;
-      }
-
+      currentSearchIndex = (currentSearchIndex + direction + currentSearchResults.length) % currentSearchResults.length;
       focusCurrentMatch();
     }
 
     function focusCurrentMatch() {
       if (currentSearchIndex < 0 || currentSearchIndex >= currentSearchResults.length) return;
-
-      document.querySelectorAll('.search-highlight-active').forEach(el => el.classList.remove('search-highlight-active'));
-      document.querySelectorAll('.search-table-target').forEach(el => el.classList.remove('search-table-target'));
+      document.querySelectorAll('.search-highlight-active, .search-table-target')
+        .forEach(el => el.classList.remove('search-highlight-active', 'search-table-target'));
 
       const match = currentSearchResults[currentSearchIndex];
-      const counterEl = document.getElementById('searchCounter');
-      counterEl.textContent = `${currentSearchIndex + 1}/${currentSearchResults.length}`;
+      document.getElementById('searchCounter').textContent = `${currentSearchIndex + 1}/${currentSearchResults.length}`;
 
       const activeTab = document.querySelector('.tab-view.active');
       if (!activeTab || activeTab.id !== match.tabId) {
@@ -2308,14 +1241,21 @@
       }
 
       match.element.classList.add('search-highlight-active');
-      if (match.table) {
-        match.table.classList.add('search-table-target');
-        match.table.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-      } else {
-        match.element.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-      }
+      const target = match.table || match.element;
+      if (match.table) match.table.classList.add('search-table-target');
+      target.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
     }
-  </script>
 
+    const searchInput = document.getElementById('seatSearch');
+    searchInput.addEventListener('input', e => initiateSearch(e.target.value));
+    searchInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        cycleMatch(e.shiftKey ? -1 : 1);
+      }
+    });
+    document.getElementById('btnPrev').addEventListener('click', () => cycleMatch(-1));
+    document.getElementById('btnNext').addEventListener('click', () => cycleMatch(1));
+  </script>
 </body>
 </html>
