@@ -413,16 +413,18 @@
     .seats-2p { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
     .seats-4p { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; }
     .zl-seat-cell {
-      background: #f8fafc;
-      border: 1px solid var(--color-border-light);
-      border-radius: 4px;
-      padding: 4px 6px;
-      font-size: 12.5px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      min-height: 25px;
-    }
+          background: #f8fafc;
+          border: 1px solid var(--color-border-light);
+          border-radius: 4px;
+          padding: 4px 6px;
+          font-size: 12.5px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          min-height: 25px;
+          flex-wrap: wrap; /* 空間不夠時允許價格標籤折行 */
+          gap: 2px;        /* 避免名字與價格標籤緊貼 */
+        }
     .zl-seat-cell .name { font-weight: 700; color: var(--color-body); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .zl-seat-cell.is-blank { border: 1px dashed var(--color-border); color: var(--color-muted); justify-content: center; font-size: 11px; }
 
