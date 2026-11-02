@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>樣品申請單</title>
+<style>
+:root{--bg:#f3f5f4;--surface:#fff;--ink:#1c2a27;--mute:#5d6e6a;--line:#cfd8d5;--accent:#1f6f5c;--accent-ink:#fff;--warn:#b4541a;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121a18;--surface:#1b2623;--ink:#e6efec;--mute:#9bb0aa;--line:#33443f;--accent:#4fb89c;--accent-ink:#0b1b17;--warn:#e89a62;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121a18;--surface:#1b2623;--ink:#e6efec;--mute:#9bb0aa;--line:#33443f;--accent:#4fb89c;--accent-ink:#0b1b17;--warn:#e89a62;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 "Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}
+h1{font-size:1.6rem;margin:8px 0 4px;letter-spacing:.02em}
+.lead{color:var(--mute);margin:0 0 20px}
+fieldset{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px 18px;margin:0 0 16px;min-width:0}
+legend{font-weight:700;padding:0 6px;color:var(--accent)}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px 16px}
+.full{grid-column:1/-1}
+label{display:flex;flex-direction:column;gap:4px;font-size:.9rem;color:var(--mute)}
+input,select,textarea{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:9px 10px;width:100%}
+textarea{resize:vertical;min-height:84px}
+input:focus,select:focus,textarea:focus,button:focus-visible,a.btn:focus-visible,#body:focus{outline:2px solid var(--accent);outline-offset:1px}
+.items{display:flex;flex-direction:column;gap:12px}
+.item{border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:8px;padding:10px 14px 14px;background:var(--bg)}
+.item-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+.item-head .no{font-weight:700;color:var(--accent)}
+.item input,.item select,.item textarea{background:var(--surface)}
+.item textarea{min-height:72px}
+.item .grid{grid-template-columns:repeat(12,1fr);gap:10px 12px}
+.item label{min-width:0}
+.c-op,.c-mode,.c-st{grid-column:span 4}
+.c-name,.c-half{grid-column:span 6}
+.c-3{grid-column:span 2}
+button,a.btn{font:inherit;cursor:pointer;border-radius:6px;border:1px solid var(--accent);padding:9px 16px;background:transparent;color:var(--accent);text-decoration:none;display:inline-block}
+button.primary,a.btn.primary{background:var(--accent);color:var(--accent-ink);font-weight:700}
+button.link{border:none;padding:2px 6px;color:var(--warn)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+#draft{display:none}
+#draft.show{display:block}
+.cap{font-size:.9rem;color:var(--mute);margin-bottom:4px}
+#body{background:#fff;color:#000;border:1px solid var(--line);border-radius:6px;padding:10px;overflow-x:auto;line-height:1.5;min-height:160px}
+.note{font-size:.85rem;color:var(--mute);margin:8px 0 0}
+#toast{min-height:1.4em;color:var(--accent);margin-top:8px}
+@media (max-width:640px){.grid{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+@media (max-width:640px){.c-half{grid-column:1/-1}}
+@media (max-width:420px){.grid{grid-template-columns:1fr}main{padding:16px 10px 40px}fieldset{padding:14px 12px 16px}.item{padding:10px 10px 12px}.c-op,.c-name{grid-column:1/-1}.c-mode,.c-st{grid-column:span 6}.c-3{grid-column:span 4}}
+</style>
+</head>
+<body>
+<main>
+<h1>樣品申請單</h1>
+<p class="lead">填寫完成後按「產生 Email 草稿」，確認內容無誤再寄出。</p>
+
+<form id="f" onsubmit="return false">
+<fieldset>
+<legend>基本資料（所有產品共用）</legend>
+<div class="grid">
+<label>收件人<input id="recipient"></label>
+<label>公司名稱<input id="company"></label>
+<label class="full">地址<input id="address"></label>
+<label>電話<input id="tel" type="tel" placeholder="04-2XXX-XXXX"></label>
+<label>手機<input id="mobile" type="tel" placeholder="09XX-XXX-XXX"></label>
+<label>業務人員<input id="sales" value="芷筠"></label>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>樣品明細</legend>
+<div class="items" id="items"></div>
+<div class="actions"><button type="button" id="add">＋ 新增一列產品</button></div>
+</fieldset>
+
+<div class="actions"><button class="primary" type="button" id="gen">產生 Email 草稿</button><button type="button" id="reset">清除重填</button></div>
+<div id="toast" role="status"></div>
+</form>
+
+<fieldset id="draft">
+<legend>Email 草稿</legend>
+<div class="grid">
+<label class="full">收件者<input id="to" type="text" value="sales02@everwide.com.tw" readonly></label>
+<label class="full">主旨<input id="subject"></label>
+<div class="full"><div class="cap">內文預覽（格式與寄出時相同，點一下表格內文字可直接修改）</div><div id="body" contenteditable="true"></div></div>
+</div>
+<div class="actions">
+<a class="btn primary" id="gmail" target="_blank" rel="noopener">複製內文並開啟 Gmail</a>
+<button type="button" id="copybody">複製內文（含表格）</button>
+<button type="button" id="copysub">複製主旨</button>
+</div>
+<p class="note">Gmail 的連結只能帶入收件者和主旨，表格要用貼上的。步驟：① 按「複製內文並開啟 Gmail」② 在新郵件內文處貼上（電腦按 Ctrl+V，手機長按→貼上）③ 確認後自行寄出。</p>
+</fieldset>
+</main>
+
+<script>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var itemsEl=$('items');
+function renumber(){
+  var n=itemsEl.children.length;
+  Array.prototype.forEach.call(itemsEl.children,function(it,i){
+    it.querySelector('.no').textContent='產品 '+(i+1);
+    it.querySelector('.rm').style.visibility=n>1?'visible':'hidden';
+  });
+}
+function addItem(scroll){
+  var d=document.createElement('div');d.className='item';
+  d.innerHTML='<div class="item-head"><span class="no"></span><button type="button" class="link rm">✕ 移除</button></div>'+
+  '<div class="grid">'+
+  '<label class="c-op">開案人員<input class="p-opener"></label>'+
+  '<label class="c-mode">送樣模式<select class="p-mode"><option>現有樣品</option><option>研發開案</option></select></label>'+
+  '<label class="c-st">保存方式<select class="p-storage"><option>常溫</option><option>低溫</option></select></label>'+
+  '<label class="c-name">產品名稱<input class="p-name"></label>'+
+  '<label class="c-3">包材<input class="p-pack"></label>'+
+  '<label class="c-3">重量<input class="p-weight"></label>'+
+  '<label class="c-3">數量<input class="p-qty"></label>'+
+  '<label class="c-half">案件簡述<textarea class="p-sum"></textarea></label>'+
+  '<label class="c-half">備註<textarea class="p-remark" placeholder="深圳寄出；批號260818"></textarea></label>'+
+  '</div>';
+  d.querySelector('.rm').onclick=function(){if(itemsEl.children.length>1){d.remove();renumber()}};
+  itemsEl.appendChild(d);renumber();
+  if(scroll===true)d.scrollIntoView({behavior:'smooth',block:'start'});
+}
+addItem();
+$('add').onclick=function(){addItem(true)};
+
+function v(id){return ($(id).value||'').trim()}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
+var TEAL='#1abc9c',YEL='#f1c40f',BLUE='#2980b9';
+var HEADS=[['收件人',TEAL],['公司名稱',TEAL],['地址',TEAL],['電話',TEAL],['手機',TEAL],['業務人員',YEL],['開案人員',YEL],['送樣模式',YEL],['案件簡述',BLUE,'white'],['產品名稱',TEAL],['包材',TEAL],['重量',TEAL],['數量',TEAL],['備註',TEAL],['保存方式',TEAL]];
+var SIG='<br><br><div style="font-family:\'Microsoft JhengHei\',sans-serif">-<br>盧芷筠<br>技術業務工程師<br>永寬化學股份有限公司<br>電話：05-5574717 #611<br>Email：<a href="mailto:sales02@everwide.com.tw">sales02@everwide.com.tw</a><br>地址：雲林縣斗六市斗工六路36號</div>';
+function build(){
+  var names=[],rows='';
+  Array.prototype.forEach.call(itemsEl.children,function(it){
+    var g=function(c){return it.querySelector(c).value.trim()};
+    if(g('.p-name'))names.push(g('.p-name'));
+    var cells=[v('recipient'),v('company'),v('address'),v('tel'),v('mobile'),v('sales'),g('.p-opener'),g('.p-mode'),g('.p-sum'),g('.p-name'),g('.p-pack'),g('.p-weight'),g('.p-qty'),g('.p-remark'),g('.p-storage')];
+    rows+='<tr style="font-size:13px">'+cells.map(function(c,i){
+      var x=i===13?';color:red;font-weight:bold':i===14?';color:#3498db;font-weight:bold':'';
+      return '<td style="border:1px solid black'+x+'">'+esc(c)+'</td>';
+    }).join('')+'</tr>';
+  });
+  var th=HEADS.map(function(h){return '<th style="background-color:'+h[1]+';'+(h[2]?'color:'+h[2]+';':'')+'border:1px solid black">'+h[0]+'</th>'}).join('');
+  var html='<div style="font-family:\'Microsoft JhengHei\',sans-serif;padding:10px"><table border="0" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;text-align:center;border:1px solid black"><tbody><tr style="color:black;font-weight:bold;font-size:14px">'+th+'</tr>'+rows+'</tbody></table></div>'+SIG;
+  return {subject:[v('company'),names.join('、'),'樣品需求'].filter(Boolean).join(' '),html:html};
+}
+function toast(t){$('toast').textContent=t;setTimeout(function(){if($('toast').textContent===t)$('toast').textContent=''},3500)}
+function setGmail(){
+  $('gmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent($('to').value.trim())+'&su='+encodeURIComponent($('subject').value);
+}
+$('subject').oninput=setGmail;
+
+$('gen').onclick=function(){
+  var r=build();
+  $('subject').value=r.subject;$('body').innerHTML=r.html;setGmail();
+  $('draft').classList.add('show');
+  $('draft').scrollIntoView({behavior:'smooth',block:'start'});
+  toast('草稿已產生，請確認內容。');
+};
+function copyText(t,msg){
+  function fb(){var a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');toast(msg)}catch(e){toast('複製失敗，請手動選取。')}a.remove()}
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){toast(msg)},fb)}else fb();
+}
+$('copysub').onclick=function(){copyText($('subject').value,'已複製主旨。')};
+var OK='已複製內文（含表格），請在 Gmail 內文處貼上。',NG='自動複製失敗，請回此頁手動選取預覽內容後複製。';
+function copyBody(){
+  var b=$('body'),ok=false;
+  var r=document.createRange();r.selectNodeContents(b);var s=window.getSelection();s.removeAllRanges();s.addRange(r);
+  try{ok=document.execCommand('copy')}catch(e){}
+  s.removeAllRanges();
+  if(ok){toast(OK);return}
+  if(window.ClipboardItem&&navigator.clipboard&&navigator.clipboard.write){
+    navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([b.innerHTML],{type:'text/html'}),'text/plain':new Blob([b.innerText],{type:'text/plain'})})]).then(function(){toast(OK)},function(){toast(NG)});
+  }else toast(NG);
+}
+$('copybody').onclick=copyBody;
+$('gmail').onclick=function(){copyBody()};
+$('reset').onclick=function(){
+  if(!confirm('確定清除所有欄位？'))return;
+  $('f').reset();itemsEl.innerHTML='';addItem();
+  $('draft').classList.remove('show');
+};
+})();
+</script>
+</body>
+</html>
