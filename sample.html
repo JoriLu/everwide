@@ -51,11 +51,10 @@ button.link{border:none;padding:2px 6px;color:var(--warn)}
 <body>
 <main>
 <h1>樣品申請單</h1>
-<p class="lead">填寫完成後按「產生 Email 草稿」，確認內容無誤再寄出。</p>
 
 <form id="f" onsubmit="return false">
 <fieldset>
-<legend>基本資料（所有產品共用）</legend>
+<legend>基本資料</legend>
 <div class="grid">
 <label>收件人<input id="recipient"></label>
 <label>公司名稱<input id="company"></label>
@@ -79,16 +78,14 @@ button.link{border:none;padding:2px 6px;color:var(--warn)}
 <fieldset id="draft">
 <legend>Email 草稿</legend>
 <div class="grid">
-<label class="full">收件者<input id="to" type="text" value="sales02@everwide.com.tw" readonly></label>
 <label class="full">主旨<input id="subject"></label>
-<div class="full"><div class="cap">內文預覽（格式與寄出時相同，點一下表格內文字可直接修改）</div><div id="body" contenteditable="true"></div></div>
+<div class="full"><div class="cap">內文預覽</div><div id="body" contenteditable="true"></div></div>
 </div>
 <div class="actions">
 <a class="btn primary" id="gmail" target="_blank" rel="noopener">複製內文並開啟 Gmail</a>
 <button type="button" id="copybody">複製內文（含表格）</button>
 <button type="button" id="copysub">複製主旨</button>
 </div>
-<p class="note">Gmail 的連結只能帶入收件者和主旨，表格要用貼上的。步驟：① 按「複製內文並開啟 Gmail」② 在新郵件內文處貼上（電腦按 Ctrl+V，手機長按→貼上）③ 確認後自行寄出。</p>
 </fieldset>
 </main>
 
@@ -128,7 +125,6 @@ function v(id){return ($(id).value||'').trim()}
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>')}
 var TEAL='#1abc9c',YEL='#f1c40f',BLUE='#2980b9';
 var HEADS=[['收件人',TEAL],['公司名稱',TEAL],['地址',TEAL],['電話',TEAL],['手機',TEAL],['業務人員',YEL],['開案人員',YEL],['送樣模式',YEL],['案件簡述',BLUE,'white'],['產品名稱',TEAL],['包材',TEAL],['重量',TEAL],['數量',TEAL],['備註',TEAL],['保存方式',TEAL]];
-var SIG='<br><br><div style="font-family:\'Microsoft JhengHei\',sans-serif">-<br>盧芷筠<br>技術業務工程師<br>永寬化學股份有限公司<br>電話：05-5574717 #611<br>Email：<a href="mailto:sales02@everwide.com.tw">sales02@everwide.com.tw</a><br>地址：雲林縣斗六市斗工六路36號</div>';
 function build(){
   var names=[],rows='';
   Array.prototype.forEach.call(itemsEl.children,function(it){
@@ -141,12 +137,12 @@ function build(){
     }).join('')+'</tr>';
   });
   var th=HEADS.map(function(h){return '<th style="background-color:'+h[1]+';'+(h[2]?'color:'+h[2]+';':'')+'border:1px solid black">'+h[0]+'</th>'}).join('');
-  var html='<div style="font-family:\'Microsoft JhengHei\',sans-serif;padding:10px"><table border="0" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;text-align:center;border:1px solid black"><tbody><tr style="color:black;font-weight:bold;font-size:14px">'+th+'</tr>'+rows+'</tbody></table></div>'+SIG;
+  var html='<div style="font-family:\'Microsoft JhengHei\',sans-serif;padding:10px"><table border="0" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;text-align:center;border:1px solid black"><tbody><tr style="color:black;font-weight:bold;font-size:14px">'+th+'</tr>'+rows+'</tbody></table></div>';
   return {subject:[v('company'),names.join('、'),'樣品需求'].filter(Boolean).join(' '),html:html};
 }
 function toast(t){$('toast').textContent=t;setTimeout(function(){if($('toast').textContent===t)$('toast').textContent=''},3500)}
 function setGmail(){
-  $('gmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent($('to').value.trim())+'&su='+encodeURIComponent($('subject').value);
+  $('gmail').href='https://mail.google.com/mail/?view=cm&fs=1&to='+encodeURIComponent('customer@everwide.com.tw')+'&su='+encodeURIComponent($('subject').value);
 }
 $('subject').oninput=setGmail;
 
