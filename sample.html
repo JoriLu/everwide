@@ -62,7 +62,6 @@ button.link{border:none;padding:2px 6px;color:var(--warn)}
 <label class="full">地址<input id="address"></label>
 <label>電話<input id="tel" type="tel" placeholder="04-2XXX-XXXX"></label>
 <label>手機<input id="mobile" type="tel" placeholder="09XX-XXX-XXX"></label>
-<label>業務人員<input id="sales" value="芷筠"></label>
 </div>
 </fieldset>
 
@@ -131,7 +130,7 @@ function build(){
   Array.prototype.forEach.call(itemsEl.children,function(it){
     var g=function(c){return it.querySelector(c).value.trim()};
     if(g('.p-name'))names.push(g('.p-name'));
-    var cells=[v('recipient'),v('company'),v('address'),v('tel'),v('mobile'),v('sales'),g('.p-opener'),g('.p-mode'),g('.p-sum'),g('.p-name'),g('.p-pack'),g('.p-weight'),g('.p-qty'),g('.p-remark'),g('.p-storage')];
+    var cells=[v('recipient'),v('company'),v('address'),v('tel'),v('mobile'),'芷筠',g('.p-opener'),g('.p-mode'),g('.p-sum'),g('.p-name'),g('.p-pack'),g('.p-weight'),g('.p-qty'),g('.p-remark'),g('.p-storage')];
     rows+='<tr style="font-size:13px">'+cells.map(function(c,i){
       var x=i===13?';color:red;font-weight:bold':i===14?';color:#3498db;font-weight:bold':'';
       return '<td style="border:1px solid black'+x+'">'+esc(c)+'</td>';
