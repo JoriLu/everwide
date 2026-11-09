@@ -161,9 +161,9 @@ X6 2 1275 35 李曉青/y,林瑋豪/x
 X7 2 1475 35 林卉榛/y,王曼萍/y
 X8 4 1675 35 黃治瑀/y,王美娜/x,雷晴安/y,陳湛于/y
 X9 2 1930 35 陳儷文/y,~陳儷文家屬/x
-X10 4 660 250 張雅婷/x,~張雅婷親屬/w,張鈺晨/y,-
+X10 4 660 250 賴政嘉/y,~賴政嘉親屬1/w,~賴政嘉親屬2/w,~賴政嘉親屬3/w
 X11 4 1005 250 蘇雅惠/y,鄭家吟/y,~陳苡萱親屬/w,-
-X12 4 1350 250 賴政嘉/y,~賴政嘉親屬1/w,~賴政嘉親屬2/w,~賴政嘉親屬3/w
+X12 4 1350 250 張雅婷/x,~張雅婷親屬/w,張鈺晨/y,-
 X13 6 1665 250 陳雅芳/x,陳采歆/y,張晏豪/y,史曜瑋/x,洪霈哲/y,陳韋如/x
 X14 6 2010 250 羅珮蓉/x,黃富麟/y,林榮新/y,~林榮新親屬/x,陳逸修/y,曾文政/y
 Q10 6 630 435
@@ -176,7 +176,7 @@ Q5 6 315 660
 Q6 4 660 660
 Q7 4 1005 660 蕭名宏/y,翁鈺雯/y,廖苑茹/y,-
 Q8 4 1350 660 趙文琳/y,艾玉芝/x,蔡家榮/y,陳晉磊/x
-Q9 4 1695 660 張隆昌/y,邱芯柔/y,-,-
+Q9 4 1695 660 張隆昌/y,邱芯柔/y,林政宏/y,-
 B3 8 1980 660
 Q1 4 60 910 莊雲雅/y,張巧薇/y,游怡屏/x,-
 Q4 6 315 910
@@ -245,6 +245,7 @@ const PRICE = {
 };
 const PKG = 990, SUBSIDY = 600; // 桌套餐總價、每人補助
 // 成員格式：姓名:品項*數量,品項… ；~ 開頭為親屬（歸屬於前一位同仁）
+// + 開頭為同仁，且與下一位同仁的額度合併計算（承接其親屬未扣抵完的差額）
 const BW = {
  '1120': [
   {t:'4人桌-01', note:'希望排在張純華桌旁邊', m:[
@@ -276,7 +277,7 @@ const BW = {
    '吳宗祐:心,霸味小丸子,純鴨血,茼蒿,霸味鮮豆皮']}
  ],
  '1127': [
-  {t:'4人桌-01', m:['陳湘琦:霸味小丸子,霸味鈴鈴卷,麻油麵線*2','~陳湘琦親屬 1','~陳湘琦親屬 2']},
+  {t:'4人桌-01', m:['+沈凌輝:霸味小丸子,霸味鈴鈴卷,麻油麵線*2','陳湘琦','~陳湘琦親屬 1','~陳湘琦親屬 2']},
   {t:'4人桌-02', m:['張俊銘:傳統豆皮,麻油麵線','~張俊銘親屬 1:麻油麵線','~張俊銘親屬 2:招牌豬油拌飯']},
   {t:'4人桌-03', m:['林怡君:純鴨血,鳥蛋,麻油麵線*3','~林怡君親屬 1:麻油麵線*3','~林怡君親屬 2','~林怡君親屬 3']},
   {t:'6人桌-01', note:'需兒童椅 × 1', m:[
@@ -387,10 +388,10 @@ function fitZl() {
 
 /* --- 霸味（費用由程式計算） --- */
 function parseMember(s) {
-  const [nm, it = ''] = s.split(':'), rel = nm[0] === '~';
+  const [nm, it = ''] = s.split(':'), rel = nm[0] === '~', merge = nm[0] === '+';
   const items = it ? it.split(',').map(x => { const [n, q = 1] = x.split('*'); return {n, q: +q, p: PRICE[n]}; }) : [];
   if (items.some(i => i.p == null)) console.warn('找不到單價：', items.filter(i => i.p == null));
-  return {name: rel ? nm.slice(1) : nm, rel, items, total: items.reduce((a, i) => a + i.p * i.q, 0)};
+  return {name: rel || merge ? nm.slice(1) : nm, rel, merge, items, total: items.reduce((a, i) => a + i.p * i.q, 0)};
 }
 function bwTable(T) {
   const rows = T.m.map(parseMember), n = rows.length, size = +T.t[0];
@@ -400,16 +401,35 @@ function bwTable(T) {
   rows.forEach((r, i) => {
     if (T.pool) { r.res = `${i ? '' : '全桌額度合算加點 ＝ '}${pill(i ? 'ok' : poolOver ? 'bad' : 'ok', '自付 ' + money(i ? 0 : poolOver))}`; return; }
     if (!r.rel) {
-      emp = r; r.over = Math.max(0, r.total - quota); r.left = Math.max(0, quota - r.total); r.left0 = r.left; r.rels = [];
+      emp = r; r.rels = []; r.merged = 0;
+      r.over = Math.max(0, r.total - quota); r.left = Math.max(0, quota - r.total); r.left0 = r.left;
     } else {
-      const due = base + r.total, use = Math.min(emp.left, due); emp.left -= use; r.pay = due - use; emp.rels.push(r);
-      r.res = `基本套餐費 ${money(base)}${r.total ? ` ＋ 加點 ${money(r.total)}` : ''}${use ? ` － 員工餘額 ${money(use)}` : ''} ＝ ${pill(r.pay ? 'bad' : 'ok', '自付 ' + money(r.pay))}`;
+      const due = base + r.total, use = Math.min(emp.left, due); emp.left -= use; r.use = use; r.pay = due - use; emp.rels.push(r);
     }
   });
+  rows.forEach((r, i) => { // + 同仁與下一位同仁額度合併：承接其親屬未扣抵完的差額
+    if (T.pool || !r.merge) return;
+    const p = rows.slice(i + 1).find(x => !x.rel);
+    if (!p) return;
+    const owed = p.rels.reduce((a, x) => a + x.pay, 0);
+    r.merged = owed; r.mergeWith = p.name;
+    p.rels.forEach(x => { if (x.pay) { x.moved = x.pay; x.movedTo = r.name; x.pay = 0; } });
+    r.over = Math.max(0, r.total + owed - quota); r.left = Math.max(0, quota - r.total - owed); r.left0 = r.left;
+  });
+  const brief = rows.some(r => r.merge); // 有額度合併的桌次只顯示自付金額
   rows.forEach(r => {
-    if (r.rel || T.pool) return;
+    if (T.pool) return;
+    if (r.rel && brief) { r.res = pill(r.pay ? 'bad' : 'ok', '自付 ' + money(r.pay)); return; }
+    if (r.rel) {
+      r.res = `基本套餐費 ${money(base)}${r.total ? ` ＋ 加點 ${money(r.total)}` : ''}${r.use ? ` － 員工餘額 ${money(r.use)}` : ''}${r.moved ? ` － ${esc(r.movedTo)}額度合併扣抵 ${money(r.moved)}` : ''} ＝ ${pill(r.pay ? 'bad' : 'ok', '自付 ' + money(r.pay))}`;
+      return;
+    }
+    if (r.merged) {
+      r.res = pill(r.over ? 'bad' : 'ok', '自付 ' + money(r.over));
+      return;
+    }
     r.res = r.over ? `超額 ${money(r.over)} ＝ ${pill('bad', '自付 ' + money(r.over))}`
-      : pill('ok', '未超額，自付 $0') + (r.rels.length && r.left0 ? `<span class="sn">（額度剩 ${money(r.left0)} 可扣抵親屬）</span>` : '');
+      : pill('ok', '未超額，自付 $0') + (!brief && r.rels.length && r.left0 ? `<span class="sn">（額度剩 ${money(r.left0)} 可扣抵親屬）</span>` : '');
   });
   const notes = [T.note && pill('warn', T.note, 1), n < size && pill('warn', `因少${size - n}人，員工額度調整 ${money(quota)} (每人${money(SUBSIDY)} - 套餐${money(PKG)}/實際人數${n}人)`, 1)].filter(Boolean).join(' ');
   let h = `<tr class="g"><td colspan="2">${T.t}（${n}人）</td><td colspan="2" class="r">${notes}</td></tr>`;
@@ -419,9 +439,9 @@ function bwTable(T) {
     const nxt = rows[i + 1];
     if (!T.pool && r.rel && (!nxt || !nxt.rel) && emp !== null) {
       const owner = rows.slice(0, i + 1).reverse().find(x => !x.rel);
-      if (owner.rels.length > 1) {
+      if (owner.rels.length > 1 && !brief) {
         const due = owner.rels.reduce((a, x) => a + base + x.total, 0), pay = owner.rels.reduce((a, x) => a + x.pay, 0);
-        h += `<tr class="sub"><td colspan="4"><b style="color:var(--sub);margin-right:8px">眷屬合併結算：</b>眷屬應付 ${money(due)} － 員工餘額 ${money(due - pay)} ＝ ${pill('bad', '自付 ' + money(pay))}</td></tr>`;
+        h += `<tr class="sub"><td colspan="4">${brief ? '' : `<b style="color:var(--sub);margin-right:8px">眷屬合併結算：</b>眷屬應付 ${money(due)} － 員工餘額 ${money(due - pay)} ＝ `}${pill(pay ? 'bad' : 'ok', '自付 ' + money(pay))}</td></tr>`;
       }
     }
   });
