@@ -38,34 +38,36 @@ header{background:#fff;border-radius:16px;padding:10px 16px;box-shadow:0 4px 18p
 #stage::before{content:"";position:absolute;left:0;right:0;top:0;height:8px;
   background:linear-gradient(90deg,var(--gold),#5a66ff 55%,#d5d8fb)}
 #stage > *{position:relative;z-index:1}
-#stage > .mol{position:absolute;z-index:0;pointer-events:none;width:230px;height:230px}
-.mol.m1{left:-40px;top:20px;color:var(--gold);opacity:.08;transform:rotate(12deg)}
-.mol.m3{left:34%;bottom:-70px;color:var(--red);opacity:.06;width:170px;height:170px}
+#stage > .mol{position:absolute;z-index:0;pointer-events:none;width:17cqw;height:17cqw}
+.mol.m1{left:-3cqw;top:2cqw;color:var(--gold);opacity:.08;transform:rotate(12deg)}
+.mol.m3{left:34%;bottom:-5cqw;color:var(--red);opacity:.06;width:13cqw;height:13cqw}
 /* 接著劑產品裝飾 */
 #stage > .tool{position:absolute;z-index:0;pointer-events:none;opacity:.22}
-.t-bottle{left:3%;bottom:14px;width:90px;height:180px;transform:rotate(-8deg)}
-.t-syringe{right:2%;top:46px;width:240px;height:65px;transform:rotate(-18deg)}
-.t-gun{right:2%;bottom:14px;width:240px;height:142px}
-@media (max-width:900px){#stage > .tool{opacity:.12}}
-@media (max-width:640px){#stage > .tool{display:none}}#stage.reacting .mol{animation:spinmol 6s linear infinite}
+.t-bottle{left:3%;bottom:1.5cqw;width:7cqw;height:14cqw;transform:rotate(-8deg)}
+.t-syringe{right:2%;top:3.5cqw;width:18cqw;height:5cqw;transform:rotate(-18deg)}
+.t-gun{right:2%;bottom:1.5cqw;width:18cqw;height:10.6cqw}
+@media (max-width:640px){#stage > .tool{display:none}}
+#stage.reacting .mol{animation:spinmol 6s linear infinite}
 @keyframes spinmol{to{transform:rotate(360deg)}}
-#stage{position:relative;flex:1;min-height:340px;background:var(--bg2);box-shadow:0 4px 24px rgba(20,36,230,.08);
+/* 抽獎舞台：固定 16:9，盡量撐滿一個畫面（header 以下） */
+#stage{position:relative;flex:none;aspect-ratio:16/9;width:min(100%, calc((100vh - var(--hdr, 120px)) * 16 / 9));
+  margin:0 auto;container-type:inline-size;background:var(--bg2);box-shadow:0 4px 24px rgba(20,36,230,.08);
   border:2px solid var(--line);border-radius:20px;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:24px 16px;gap:22px;overflow:hidden}
-#stageInfo{font-size:18px;color:var(--muted);text-align:center}
-#stageInfo b{color:var(--gold);font-size:22px}
-#slots{display:grid;gap:14px;width:100%;max-width:1400px;justify-content:center}
-.slot{background:#f1f3fb;border:2px solid var(--line);border-radius:16px;padding:18px 10px;text-align:center;
+  justify-content:center;padding:3cqw 4cqw;gap:2.2cqw;overflow:hidden}
+#stageInfo{font-size:1.7cqw;color:var(--muted);text-align:center}
+#stageInfo b{color:var(--gold);font-size:2.1cqw}
+#slots{display:grid;gap:1.1cqw;width:100%;justify-content:center}
+.slot{background:#f1f3fb;border:2px solid var(--line);border-radius:1.2cqw;padding:1.2cqw .8cqw;text-align:center;
   font-weight:900;color:var(--text);min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 .slot.spin{color:#a3aacb}
 .slot.slow{color:var(--text)}
 .slot.locked{border-color:var(--red);color:var(--gold);background:#fff;
   box-shadow:0 6px 20px rgba(232,49,43,.2);animation:pop .55s cubic-bezier(.2,1.6,.4,1)}
-.slot.placeholder{color:#b8bfdc;font-size:40px !important}
+.slot.placeholder{color:#b8bfdc;font-size:4cqw !important;padding:3cqw 1cqw}
 @keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.18)}100%{transform:scale(1)}}
 
-#drawBtn{font-family:inherit;font-size:34px;font-weight:900;letter-spacing:3px;color:#fff;cursor:pointer;
-  background:linear-gradient(180deg,#3a48ff,#1424e6);border:none;border-radius:999px;padding:16px 56px;
+#drawBtn{font-family:inherit;font-size:max(18px,2.8cqw);font-weight:900;letter-spacing:.2cqw;color:#fff;cursor:pointer;
+  background:linear-gradient(180deg,#3a48ff,#1424e6);border:none;border-radius:999px;padding:1.2cqw 4.5cqw;
   box-shadow:0 6px 0 #0c1499,0 8px 24px rgba(20,36,230,.3);transition:transform .1s;max-width:100%}
 #drawBtn:active{transform:translateY(4px);box-shadow:0 2px 0 #0c1499}
 #drawBtn:disabled{filter:grayscale(.6);opacity:.55;cursor:not-allowed}
@@ -80,7 +82,8 @@ header{background:#fff;border-radius:16px;padding:10px 16px;box-shadow:0 4px 18p
 /* prizes */
 #prizes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
 @media (max-width:1200px){#prizes{grid-template-columns:repeat(3,1fr)}}
-@media (max-width:640px){#prizes{grid-template-columns:1fr}#drawBtn{font-size:24px;padding:14px 28px}}
+@media (max-width:640px){#prizes{grid-template-columns:1fr}}
+#prizesHead{font-weight:800;color:var(--gold);font-size:18px;margin:10px 0 -4px}
 .prize{background:var(--panel);border:2px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;
   display:flex;flex-direction:column;gap:8px;transition:border-color .15s,box-shadow .15s}
 .prize{position:relative;overflow:hidden}
@@ -201,16 +204,17 @@ textarea{width:100%;height:340px;background:var(--field);color:var(--text);borde
     <button id="drawBtn"></button>
   </section>
 
+  <div id="prizesHead">獎項</div>
   <section id="prizes"></section>
 </div>
 
 <div id="modal">
   <div class="mbox">
     <h2>名單設定</h2>
-    <p>一行一位（也可用逗號或 Tab 分隔，直接從 Excel 欄位貼上即可）。「所有人」＝一年以上＋一年以下自動合併。已中獎者會自動從所有名單剔除。</p>
+    <p>一行一人。請從 Excel 直接複製「工號、姓名、部門」三欄貼上（匯出的獎金統計表會用到工號和部門）；只貼姓名也可以。「所有人」＝一年以上＋一年以下自動合併。<br>中過「中獎金額」的人不會再抽中其他主獎；「全體加碼」「新人加碼」「學長姐加碼」各自另外抽，主獎得主也可能抽中加碼。</p>
     <div class="lists">
-      <div><label>一年以上 <span id="cntVet"></span></label><textarea id="taVet" placeholder="王小明&#10;李大華&#10;…"></textarea></div>
-      <div><label>一年以下 <span id="cntNew"></span></label><textarea id="taNew" placeholder="陳小美&#10;林志強&#10;…"></textarea></div>
+      <div><label>一年以上 <span id="cntVet"></span></label><textarea id="taVet" placeholder="104001&#9;陳小明&#9;研發1&#10;206004&#9;林大華&#9;研發2&#10;…"></textarea></div>
+      <div><label>一年以下 <span id="cntNew"></span></label><textarea id="taNew" placeholder="224047&#9;王小美&#9;管理部&#10;…"></textarea></div>
     </div>
     <div id="warn"></div>
     <div class="mfoot"><span class="sum" id="cntAll"></span><button class="btn" id="btnClose">完成</button></div>
@@ -223,14 +227,12 @@ const KEY = 'lottery-state-v1';
 const $ = s => document.querySelector(s);
 
 // 正式獎項（quota = 名額，0 = 不限）
-const PRESET_V = 3;
+const PRESET_V = 4;
 const PRESET = () => [
   {id:1,name:'6000 元',pool:'vet',quota:15,count:5},
   {id:2,name:'5000 元',pool:'vet',quota:20,count:10},
   {id:3,name:'4000 元',pool:'vet',quota:64,count:16},
   {id:4,name:'3000 元',pool:'vet',quota:73,count:15},
-  {id:5,name:'新人加碼 1000 元',pool:'new',quota:0,count:1},
-  {id:6,name:'加碼 1000 元',pool:'all',quota:0,count:1},
 ];
 let state = load() || {
   title:'永寬化學 尾牙抽獎', vet:'', nw:'',
@@ -240,6 +242,12 @@ let state = load() || {
 if(state.presetV === 2){
   // v2 → v3：只把 6000～3000 元改成「一年以上」名單，其他設定與紀錄保留
   state.prizes.forEach(p=>{ if([1,2,3,4].includes(p.id) && p.pool==='all') p.pool = 'vet'; });
+  state.presetV = 3;
+}
+if(state.presetV === 3){
+  // v3 → v4：先拿掉「新人加碼 1000 元」「加碼 1000 元」（已有人抽中的就保留）
+  state.prizes = state.prizes.filter(p=>![5,6].includes(p.id) || state.winners.some(w=>w.prizeId===p.id));
+  if(!state.prizes.some(p=>p.id===state.current)) state.current = state.prizes[0].id;
   state.presetV = PRESET_V;
   try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
 }
@@ -259,24 +267,52 @@ let drawing = false;
 function load(){ try{ return JSON.parse(localStorage.getItem(KEY)); }catch(e){ return null; } }
 function save(){ try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){} }
 
-function parse(text){
+/* 獎項計入哪一欄（對應獎金統計表） */
+const KINDS = {main:'中獎金額', all:'全體加碼', new:'新人加碼', senior:'學長姐加碼'};
+state.prizes.forEach(p=>{
+  if(!p.kind) p.kind = /新人加碼/.test(p.name) ? 'new' : /加碼/.test(p.name) ? 'all' : 'main';
+  if(p.amount==null){ const m = String(p.name).match(/\d{3,}/g); p.amount = m ? Math.max(...m.map(Number)) : 0; }
+});
+function prizeOf(w){ return state.prizes.find(p=>p.id===w.prizeId); }
+function kindOf(w){ const p = prizeOf(w); return p ? p.kind : (w.kind || 'main'); }
+function amountOf(w){ const p = prizeOf(w); return p ? (+p.amount||0) : (+w.amount||0); }
+function keyOf(w){ return w.key || w.name; }
+
+/* 名單：一行一人。可直接從 Excel 複製「工號、姓名、部門」貼上（Tab 分隔）；只有姓名也行 */
+function parse(text, group){
   const seen = new Set(), out = [];
-  (text||'').split(/[\r\n,，\t、]+/).map(s=>s.trim()).filter(Boolean).forEach(n=>{ if(!seen.has(n)){seen.add(n);out.push(n);} });
+  const add = (id, name, dept)=>{
+    if(!name) return; const key = id || name;
+    if(seen.has(key)) return; seen.add(key);
+    out.push({key, id:id||'', name, dept:dept||'', group});
+  };
+  (text||'').split(/\r?\n/).forEach(line=>{
+    if(!line.trim()) return;
+    if(line.includes('\t')){
+      const f = line.split('\t').map(s=>s.trim()).filter(Boolean);
+      const idIdx = f.findIndex(s=>/^[A-Za-z]?\d{3,}$/.test(s));
+      const id = idIdx>=0 ? f[idIdx] : '';
+      const rest = f.filter((_,i)=>i!==idIdx);
+      add(id, rest[0], rest[1]);
+    } else {
+      line.split(/[,，、]+/).map(s=>s.trim()).filter(Boolean).forEach(n=>add('', n, ''));
+    }
+  });
   return out;
 }
 function people(){
-  const vets = parse(state.vet), news = parse(state.nw);
-  const map = new Map();
-  vets.forEach(n=>map.set(n,'一年以上'));
-  const dup = [];
-  news.forEach(n=>{ if(map.has(n)) dup.push(n); else map.set(n,'一年以下'); });
+  const vets = parse(state.vet,'一年以上'), news = parse(state.nw,'一年以下');
+  const map = new Map(), dup = [];
+  vets.forEach(p=>map.set(p.key,p));
+  news.forEach(p=>{ if(map.has(p.key)) dup.push(p.name); else map.set(p.key,p); });
   return {vets, news, map, dup};
 }
-function wonSet(){ return new Set(state.winners.map(w=>w.name)); }
-function remaining(pool){
-  const {vets, news, map} = people(), won = wonSet();
-  let list = pool==='vet' ? vets : pool==='new' ? news.filter(n=>map.get(n)==='一年以下') : [...map.keys()];
-  return list.filter(n=>!won.has(n));
+// 同一類（中獎金額／全體加碼／新人加碼）每人只會中一次；加碼可以和主獎重疊
+function wonKeys(kind){ return new Set(state.winners.filter(w=>kindOf(w)===kind).map(keyOf)); }
+function remaining(p){
+  const {vets, news, map} = people(), won = wonKeys(p.kind);
+  let list = p.pool==='vet' ? vets : p.pool==='new' ? news.filter(x=>map.get(x.key)===x) : [...map.values()];
+  return list.filter(x=>!won.has(x.key));
 }
 function cur(){ return state.prizes.find(p=>p.id===state.current) || state.prizes[0]; }
 function esc(s){ return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -294,6 +330,8 @@ function renderPrizes(){
       ${drawing?'':`<button class="pdel" data-pdel="${p.id}" title="刪除此獎項">×</button>`}
       <input class="pname" data-f="name" value="${esc(p.name)}" ${drawing?'disabled':''}>
       <div class="row">名單<select data-f="pool" ${drawing?'disabled':''}>${Object.entries(POOLS).map(([k,v])=>`<option value="${k}" ${p.pool===k?'selected':''}>${v}</option>`).join('')}</select></div>
+      <div class="row">金額<input type="number" min="0" step="100" data-f="amount" value="${p.amount||''}" style="width:84px" ${drawing?'disabled':''}>元</div>
+      <div class="row">計入<select data-f="kind" ${drawing?'disabled':''}>${Object.entries(KINDS).map(([k,v])=>`<option value="${k}" ${p.kind===k?'selected':''}>${v}</option>`).join('')}</select></div>
       <div class="row">名額<input type="number" min="0" max="999" data-f="quota" value="${p.quota||''}" placeholder="不限" ${drawing?'disabled':''}>位</div>
       <div class="row">每次抽<input type="number" min="1" max="200" data-f="count" value="${p.count}" ${drawing?'disabled':''}>位</div>
       <div class="won">已抽出 ${ws.length}${p.quota?` / ${p.quota}`:''} 位${p.quota && ws.length>=p.quota?'（已滿）':''}</div>
@@ -302,7 +340,7 @@ function renderPrizes(){
   }).join('') + (drawing ? '' : `<div class="prize add" data-add="1">＋ 新增獎項</div>`);
 }
 function renderStage(){
-  const p = cur(), rem = remaining(p.pool), left = quotaLeft(p), n = Math.min(p.count, rem.length, left);
+  const p = cur(), rem = remaining(p), left = quotaLeft(p), n = Math.min(p.count, rem.length, left);
   $('#stageInfo').innerHTML = `目前獎項：<b>${esc(p.name)}</b>`
     + (p.quota ? `　｜　名額 <b>${wonCount(p)}</b> / ${p.quota} 位` : '')
     + `　｜　每次抽 ${p.count} 位` + (n > 0 && n < p.count ? `（本次抽 ${n} 位）` : '');
@@ -316,8 +354,8 @@ function render(){ renderPrizes(); renderStage(); }
 function layoutSlots(n){
   const box = $('#slots');
   const cols = n<=1?1 : n<=4?n : n<=6?3 : n<=12?4 : n<=20?5 : 6;
-  const fs = n<=1 ? 'min(15vw,170px)' : n<=2 ? 'min(9vw,110px)' : n<=4 ? 'min(6vw,76px)' : n<=9 ? 'min(5vw,58px)' : n<=20 ? 'min(3.6vw,42px)' : '28px';
-  box.style.gridTemplateColumns = `repeat(${cols}, minmax(0, ${n<=1?'900px':'1fr'}))`;
+  const fs = n<=1 ? '12cqw' : n<=2 ? '8cqw' : n<=4 ? '5.6cqw' : n<=6 ? '5cqw' : n<=9 ? '4.2cqw' : n<=12 ? '3.6cqw' : n<=20 ? '3cqw' : '2.3cqw';
+  box.style.gridTemplateColumns = `repeat(${cols}, minmax(0, ${n<=1?'70cqw':'1fr'}))`;
   box.innerHTML = '';
   const els = [];
   for(let i=0;i<n;i++){
@@ -336,16 +374,15 @@ function idle(){
 /* ---------- draw ---------- */
 function draw(){
   if(drawing) return;
-  const p = cur(), pool = remaining(p.pool);
+  const p = cur(), pool = remaining(p);
   const n = Math.min(Math.max(1, p.count|0), pool.length, quotaLeft(p));
   if(!n) return;
   const picks = sample(pool, n);
-  const {map} = people();
   drawing = true; render();
 
   const els = layoutSlots(n);
   const slots = els.map(el=>({el, nm:el.querySelector('.nm'), mode:'spin', last:''}));
-  const show = s => { let x; do{ x = pool[rand(pool.length)]; }while(pool.length>1 && x===s.last); s.last=x; s.nm.textContent=x; };
+  const show = s => { let x; do{ x = pool[rand(pool.length)]; }while(pool.length>1 && x===s.last); s.last=x; s.nm.textContent=x.name; };
   slots.forEach(s=>{ s.el.classList.add('spin'); show(s); });
   $('#flash').classList.add('on'); $('#stage').classList.add('reacting');
 
@@ -362,7 +399,7 @@ function draw(){
       if(t >= dur){
         const reveal = ()=>{
           s.mode='done';
-          s.nm.textContent = picks[i];
+          s.nm.textContent = picks[i].name;
           s.el.classList.remove('slow'); s.el.classList.add('locked');
           burst(s.el, isLast ? 0 : 40);
           if(isLast) finish(); else setTimeout(()=>lock(i+1), 160);
@@ -382,7 +419,8 @@ function draw(){
     $('#flash').classList.remove('on'); $('#stage').classList.remove('reacting');
     const time = now();
     let seq = state.winners.reduce((m,w)=>Math.max(m,w.seq),0);
-    picks.forEach(name=>state.winners.push({seq:++seq, prizeId:p.id, prizeName:p.name, name, identity:map.get(name)||'', time}));
+    picks.forEach(x=>state.winners.push({seq:++seq, prizeId:p.id, prizeName:p.name, kind:p.kind, amount:+p.amount||0,
+      key:x.key, empId:x.id, name:x.name, dept:x.dept, identity:x.group, time}));
     save();
     bigConfetti();
     drawing = false; render();
@@ -440,7 +478,7 @@ $('#prizes').addEventListener('click', e=>{
   if(drawing) return;
   if(e.target.closest('[data-add]')){
     const id = state.prizes.reduce((m,p)=>Math.max(m,p.id),0) + 1;
-    state.prizes.push({id, name:'新獎項', pool:'all', quota:0, count:1});
+    state.prizes.push({id, name:'新獎項', pool:'all', kind:'main', amount:0, quota:0, count:1});
     state.current = id; save(); render(); idle();
     const el = document.querySelector(`.prize[data-id="${id}"] [data-f="name"]`);
     if(el){ el.focus(); el.select(); el.scrollIntoView({block:'nearest'}); }
@@ -480,6 +518,8 @@ $('#prizes').addEventListener('input', e=>{
   if(f==='name'){ p.name = e.target.value || '未命名'; state.winners.forEach(w=>{ if(w.prizeId===p.id) w.prizeName=p.name; }); }
   if(f==='count'){ p.count = Math.max(1, Math.min(200, parseInt(e.target.value)||1)); }
   if(f==='pool'){ p.pool = e.target.value; }
+  if(f==='amount'){ p.amount = Math.max(0, parseInt(e.target.value)||0); }
+  if(f==='kind'){ p.kind = e.target.value; }
   if(f==='quota'){
     p.quota = Math.max(0, Math.min(999, parseInt(e.target.value)||0));
     const won = e.target.closest('.prize').querySelector('.won'), c = wonCount(p);
@@ -491,11 +531,13 @@ state.title = '2026年 尾牙抽獎';
 document.title = state.title;
 
 function updCounts(){
-  const {vets, news, map, dup} = people(), won = wonSet();
+  const {vets, news, map, dup} = people(), won = new Set(state.winners.map(keyOf));
+  const noId = [...map.values()].filter(x=>!x.id).length;
   $('#cntVet').textContent = `${vets.length} 人`;
   $('#cntNew').textContent = `${news.length} 人`;
-  $('#cntAll').textContent = `所有人共 ${map.size} 人，已中獎 ${state.winners.length} 人，尚未中獎 ${[...map.keys()].filter(n=>!won.has(n)).length} 人`;
-  $('#warn').textContent = dup.length ? `⚠ 以下姓名同時出現在兩份名單，將視為同一人（身分：一年以上）：${dup.join('、')}` : '';
+  $('#cntAll').textContent = `所有人共 ${map.size} 人，已中獎 ${[...map.keys()].filter(k=>won.has(k)).length} 人，尚未中獎 ${[...map.keys()].filter(k=>!won.has(k)).length} 人`;
+  $('#warn').textContent = (dup.length ? `⚠ 以下人員同時出現在兩份名單，將視為同一人（身分：一年以上）：${dup.join('、')}　` : '')
+    + (map.size && noId ? `⚠ 有 ${noId} 人沒有工號，匯出的獎金統計表工號欄會是空白。` : '');
 }
 $('#btnLists').onclick = ()=>{ $('#taVet').value = state.vet; $('#taNew').value = state.nw; updCounts(); $('#modal').classList.add('open'); };
 $('#taVet').addEventListener('input', e=>{ state.vet = e.target.value; save(); updCounts(); });
@@ -510,21 +552,53 @@ $('#btnReset').onclick = ()=>{
 
 $('#btnExport').onclick = ()=>{
   if(!state.winners.length) return alert('目前沒有中獎紀錄可匯出。');
-  const detail = [['序號','獎項','得獎者','身分','抽獎時間']];
-  state.winners.forEach((w,i)=>detail.push([i+1, w.prizeName, w.name, w.identity, w.time]));
-  const summary = [['獎項','使用名單','名額','得獎人數','得獎者']];
-  state.prizes.forEach(p=>{
-    const ws = state.winners.filter(w=>w.prizeId===p.id);
-    summary.push([p.name, POOLS[p.pool], p.quota||'不限', ws.length, ws.map(w=>w.name).join('、')]);
+  const {map} = people();
+  const num = v => /^\d+$/.test(String(v)) ? Number(v) : (v||'');
+
+  // 1) 獎金統計（同往年格式：每人一列）
+  const rows = new Map();   // key -> row data
+  const ensure = (key, base)=>{
+    if(!rows.has(key)) rows.set(key, {id:base.id||base.empId||'', name:base.name, dept:base.dept||'', prizes:[], main:0, all:0, nw:0, sr:0});
+    return rows.get(key);
+  };
+  // 名單上的人依部門分組（照名單中部門第一次出現的順序），沒中獎的也列出，方便手動補學長姐加碼
+  const deptOrder = [];
+  [...map.values()].forEach(x=>{ if(!deptOrder.includes(x.dept)) deptOrder.push(x.dept); });
+  deptOrder.forEach(dp=>[...map.values()].filter(x=>x.dept===dp).forEach(x=>ensure(x.key, x)));
+  state.winners.forEach(w=>{
+    const r = ensure(keyOf(w), map.get(keyOf(w)) || w), k = kindOf(w), a = amountOf(w);
+    if(k==='all') r.all += a; else if(k==='new') r.nw += a; else if(k==='senior') r.sr += a; else r.main += a;
+    r.prizes.push(w.prizeName);
   });
-  summary.push(['合計','','',state.winners.length,'']);
+  const stat = [['獎項','工號','姓名','部門','中獎金額','全體加碼','新人加碼','學長姐額外加碼','獎金總額']];
+  [...rows.values()].forEach(r=>stat.push([r.prizes.join('、'), num(r.id), r.name, r.dept, r.main||'', r.all||'', r.nw||'', r.sr||'', r.main+r.all+r.nw+r.sr]));
+
+  // 2) 抽獎明細
+  const detail = [['序號','獎項','計入','金額','工號','得獎者','部門','身分','抽獎時間']];
+  state.winners.forEach((w,i)=>{ const x = map.get(keyOf(w)) || w;
+    detail.push([i+1, w.prizeName, KINDS[kindOf(w)], amountOf(w), num(x.id||x.empId), w.name, x.dept||'', w.identity, w.time]); });
+
+  // 3) 獎項彙整
+  const summary = [['獎項','計入','金額','使用名單','名額','得獎人數','小計金額','得獎者']];
+  let total = 0;
+  state.prizes.forEach(p=>{
+    const ws = state.winners.filter(w=>w.prizeId===p.id), sub = ws.length*(+p.amount||0); total += sub;
+    summary.push([p.name, KINDS[p.kind], +p.amount||0, POOLS[p.pool], p.quota||'不限', ws.length, sub, ws.map(w=>w.name).join('、')]);
+  });
+  summary.push(['合計','','','','',state.winners.length,total,'']);
   const d = new Date(), pad = x=>String(x).padStart(2,'0');
   const stamp = `${d.getFullYear()}${pad(d.getMonth()+1)}${pad(d.getDate())}_${pad(d.getHours())}${pad(d.getMinutes())}`;
   const base = `${state.title||'抽獎'}_結果_${stamp}`;
   if(window.XLSX){
     const wb = XLSX.utils.book_new();
-    const s1 = XLSX.utils.aoa_to_sheet(detail); s1['!cols'] = [{wch:6},{wch:14},{wch:14},{wch:8},{wch:20}];
-    const s2 = XLSX.utils.aoa_to_sheet(summary); s2['!cols'] = [{wch:14},{wch:10},{wch:8},{wch:10},{wch:80}];
+    const s0 = XLSX.utils.aoa_to_sheet(stat);
+    // 獎金總額用公式，之後手動填「學長姐額外加碼」會自動重算
+    for(let r=2; r<=stat.length; r++) s0['I'+r] = {t:'n', f:`SUM(E${r}:H${r})`, v:stat[r-1][8]};
+    s0['!cols'] = [{wch:24},{wch:9},{wch:10},{wch:18},{wch:16},{wch:14},{wch:12},{wch:16},{wch:16}];
+    s0['!autofilter'] = {ref:`A1:I${stat.length}`};
+    const s1 = XLSX.utils.aoa_to_sheet(detail); s1['!cols'] = [{wch:6},{wch:18},{wch:10},{wch:8},{wch:9},{wch:10},{wch:18},{wch:10},{wch:20}];
+    const s2 = XLSX.utils.aoa_to_sheet(summary); s2['!cols'] = [{wch:18},{wch:10},{wch:8},{wch:10},{wch:8},{wch:10},{wch:10},{wch:80}];
+    XLSX.utils.book_append_sheet(wb, s0, '獎金統計');
     XLSX.utils.book_append_sheet(wb, s1, '抽獎明細');
     XLSX.utils.book_append_sheet(wb, s2, '獎項彙整');
     XLSX.writeFile(wb, base + '.xlsx');
@@ -532,8 +606,9 @@ $('#btnExport').onclick = ()=>{
     // offline fallback: CSV (Excel can open it)
     const csv = rows => rows.map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\r\n');
     const dl = (name, text)=>{ const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob(['﻿'+text],{type:'text/csv'})); a.download=name; a.click(); };
-    dl(base+'_抽獎明細.csv', csv(detail)); setTimeout(()=>dl(base+'_獎項彙整.csv', csv(summary)), 400);
-    alert('目前離線無法載入 Excel 元件，已改匯出兩個 CSV 檔（可用 Excel 開啟）。');
+    dl(base+'_獎金統計.csv', csv(stat));
+    setTimeout(()=>dl(base+'_抽獎明細.csv', csv(detail)), 400); setTimeout(()=>dl(base+'_獎項彙整.csv', csv(summary)), 800);
+    alert('目前離線無法載入 Excel 元件，已改匯出三個 CSV 檔（可用 Excel 開啟）。');
   }
 };
 
@@ -542,6 +617,13 @@ document.addEventListener('keydown', e=>{
     e.preventDefault(); draw();
   }
 });
+
+// 讓 16:9 舞台剛好塞進「標題列以下」的一個畫面
+function fitStage(){
+  const h = document.querySelector('header').offsetHeight;
+  document.documentElement.style.setProperty('--hdr', (h + 16 + 14 + 16 + 4) + 'px');
+}
+addEventListener('resize', fitStage); fitStage();
 
 render(); idle();
 if(!people().map.size) $('#btnLists').click();
