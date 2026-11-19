@@ -138,7 +138,7 @@ function build(){
   });
   var th=HEADS.map(function(h){return '<th style="background-color:'+h[1]+';'+(h[2]?'color:'+h[2]+';':'')+'border:1px solid black">'+h[0]+'</th>'}).join('');
   var html='<div style="font-family:\'Microsoft JhengHei\',sans-serif;padding:10px"><table border="0" cellpadding="8" cellspacing="0" style="width:100%;border-collapse:collapse;text-align:center;border:1px solid black"><tbody><tr style="color:black;font-weight:bold;font-size:14px">'+th+'</tr>'+rows+'</tbody></table></div>';
-  return {subject:[v('company'),names.join('、'),'樣品申請'].filter(Boolean).join(' '),html:html};
+  return {subject:[v('company'),names.join(' '),'樣品申請'].filter(Boolean).join(' '),html:html};
 }
 function toast(t){$('toast').textContent=t;setTimeout(function(){if($('toast').textContent===t)$('toast').textContent=''},3500)}
 function setGmail(){
